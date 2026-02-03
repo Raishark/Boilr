@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon } from "lucide-react";
+import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon, Server, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { generateBoilerplate } from "@/services/generator";
