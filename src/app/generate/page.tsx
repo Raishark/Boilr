@@ -17,14 +17,12 @@ const STEPS = [
 
 export default function GeneratePage() {
     const [currentStep, setCurrentStep] = useState(0);
-    const [config, setConfig] = useState({
+    const [config, setConfig] = useState<ProjectConfig>({
         frontend: "nextjs",
-        backend: "nodejs",
         db: "supabase",
         auth: "supabase",
         payments: "stripe",
         deploy: "vercel",
-        analytics: true,
         docker: true,
     });
 
