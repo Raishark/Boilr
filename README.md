@@ -1,6 +1,13 @@
 # 🚀 Boilr - The Ultimate Boilerplate Generator
 
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Next.js](https://img.shields.io/badge/Next.js-15-black.svg)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC.svg)
+
 Boilr es un generador de boilerplates profesionales para freelancers DevOps/Full-Stack. Permite crear proyectos Next.js configurados con tu stack preferido en segundos.
+
+[CHANGELOG](CHANGELOG.md) | [CONTRIBUTING](CONTRIBUTING.md) | [LICENSE](LICENSE)
 
 ## ✨ Características
 

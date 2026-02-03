@@ -1,7 +1,18 @@
 {
   "name": "app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/milkyrai/boilr.git"
+  },
+  "keywords": [
+    "nextjs",
+    "boilerplate",
+    "generator",
+    "fullstack",
+    "saas"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

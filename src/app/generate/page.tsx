@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon, Server, Database } from "lucide-react";
+import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon, Server, Database, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { generateBoilerplate } from "@/services/generator";
@@ -85,8 +85,25 @@ export default function GeneratePage() {
     };
 
     return (
-        <main className="min-h-screen bg-background text-foreground pt-32 pb-12 px-6">
+        <main className="min-h-screen bg-background text-foreground pt-12 pb-24 px-6">
             <div className="max-w-4xl mx-auto">
+                {/* Header with Back Button */}
+                <div className="flex items-center justify-between mb-12">
+                    <Link href="/" className="flex items-center gap-2 group">
+                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform shadow-lg shadow-primary/20">
+                            <Terminal className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="text-xl font-black tracking-tighter">BOILR</span>
+                    </Link>
+
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 text-sm font-bold text-foreground/40 hover:text-primary transition-colors pr-2"
+                    >
+                        <ArrowLeft className="w-4 h-4" /> INICIO
+                    </Link>
+                </div>
+
                 {/* Progress Bar */}
                 <div className="flex justify-between mb-16 relative px-4">
                     <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-border -z-10 -translate-y-1/2 mx-10" />
