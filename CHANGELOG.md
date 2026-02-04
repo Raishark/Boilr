@@ -5,14 +5,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 > [!NOTE]
 > El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.8.0] - 2026-02-04 🛡️
+## [2.8.1] - 2026-02-04 🛡️
 ### Añadido
-- **Git Flow Standardization**: Re-alineación del historial del repositorio con los principios de Git Flow.
-- **Release Branch Mandatory**: Introducción de ramas de liberación obligatorias (`release/vX.Y.Z`) para garantizar la integridad del historial.
+- **Legacy History Reconstruction**: Re-estructuración profunda de la historia de Git desde la v2.3.1 para asegurar que todos los merges históricos sigan el modelo Git Flow.
+- **History Integrity Fix**: Corrección de merges directos de features a `main` detectados en versiones anteriores (v2.4.0 - v2.7.0).
 
 ### Corregido
-- Auditoría retroactiva de la estructura de merges desde la v2.3.1.
-- Sincronización de versiones en todos los componentes principales.
+- Alineación retroactiva de ramas de `release` y mensajes de commit de arquitectura.
+- Sincronización de tags de versión con los puntos de integración correctos.
+
+## [2.8.0] - 2026-02-04 🛡️
 
 ## [2.7.0] - 2026-02-04 🎨
 ### Añadido
