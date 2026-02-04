@@ -1,6 +1,7 @@
 import { Terminal, Github, Rocket } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { DOCS_CONFIG } from "@/lib/docs-config";
 
 export default function DocsLayout({
     children,
@@ -28,21 +29,25 @@ export default function DocsLayout({
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-6 flex items-center gap-2">
                                 <span className="w-4 h-px bg-primary/30" />
-                                Guía Principal
+                                Contenido
                             </p>
                             <nav className="space-y-2">
-                                <Link href="/docs" className="group flex items-center justify-between px-4 py-3 rounded-2xl bg-primary/5 border border-primary/20 text-primary font-bold transition-all">
-                                    <span>README.md</span>
-                                    <Rocket className="w-4 h-4 opacity-40 group-hover:translate-x-1 transition-transform" />
+                                <Link
+                                    href="/docs"
+                                    className="group flex items-center justify-between px-4 py-3 rounded-2xl hover:bg-primary/5 border border-transparent hover:border-primary/20 text-foreground/60 hover:text-primary font-bold transition-all"
+                                >
+                                    <span>Portal de Docs</span>
                                 </Link>
-                                <a href="https://github.com/Raishark/Boilr/blob/main/CONTRIBUTING.md" target="_blank" className="px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all flex items-center justify-between group/link">
-                                    <span>Contributing</span>
-                                    <Rocket className="w-4 h-4 opacity-0 group-hover/link:opacity-40 transition-all" />
-                                </a>
-                                <a href="https://github.com/Raishark/Boilr/blob/main/CHANGELOG.md" target="_blank" className="px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all flex items-center justify-between group/link">
-                                    <span>Changelog</span>
-                                    <Rocket className="w-4 h-4 opacity-0 group-hover/link:opacity-40 transition-all" />
-                                </a>
+                                {DOCS_CONFIG.map((doc) => (
+                                    <Link
+                                        key={doc.slug}
+                                        href={`/docs/${doc.slug}`}
+                                        className="group flex items-center justify-between px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all group/link"
+                                    >
+                                        <span>{doc.title}</span>
+                                        <doc.icon className="w-4 h-4 opacity-0 group-hover/link:opacity-40 transition-all" />
+                                    </Link>
+                                ))}
                             </nav>
                         </div>
 

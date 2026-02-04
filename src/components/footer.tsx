@@ -41,21 +41,21 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold mb-6 uppercase tracking-widest text-sm text-primary">Recursos</h4>
                         <ul className="space-y-4 text-foreground/60">
-                            <li><a href="https://github.com/Raishark/Boilr#readme" target="_blank" className="hover:text-primary transition-colors">Guías</a></li>
-                            <li><a href="https://github.com/Raishark/Boilr/blob/main/CONTRIBUTING.md" target="_blank" className="hover:text-primary transition-colors">Contribuir</a></li>
-                            <li><a href="https://github.com/Raishark/Boilr/blob/main/CHANGELOG.md" target="_blank" className="hover:text-primary transition-colors">Changelog</a></li>
-                            <li><a href="https://github.com/Raishark/Boilr/issues" target="_blank" className="hover:text-primary transition-colors">Soporte</a></li>
+                            <li><Link href="/docs/guide" className="hover:text-primary transition-colors">Guías</Link></li>
+                            <li><Link href="/docs/contributing" className="hover:text-primary transition-colors">Contribuir</Link></li>
+                            <li><Link href="/docs/changelog" className="hover:text-primary transition-colors">Changelog</Link></li>
+                            <li><Link href="/docs/support" className="hover:text-primary transition-colors">Soporte</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm text-foreground/40">
-                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.5.0
+                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.6.0
                     </p>
                     <div className="flex gap-8 text-sm text-foreground/40">
                         <Link href="/license" className="hover:text-foreground transition-colors">Licencia MIT</Link>
-                        <a href="https://github.com/Raishark/Boilr/blob/main/CODE_OF_CONDUCT.md" target="_blank" className="hover:text-foreground transition-colors">Código de Conducta</a>
+                        <Link href="/docs/code-of-conduct" className="hover:text-foreground transition-colors">Código de Conducta</Link>
                     </div>
                 </div>
             </div>
