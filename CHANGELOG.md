@@ -5,6 +5,15 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 > [!NOTE]
 > El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - 2026-02-04 🛡️
+### Añadido
+- **Git Flow Standardization**: Re-alineación del historial del repositorio con los principios de Git Flow.
+- **Release Branch Mandatory**: Introducción de ramas de liberación obligatorias (`release/vX.Y.Z`) para garantizar la integridad del historial.
+
+### Corregido
+- Auditoría retroactiva de la estructura de merges desde la v2.3.1.
+- Sincronización de versiones en todos los componentes principales.
+
 ## [2.7.0] - 2026-02-04 🎨
 ### Añadido
 - **Docs Rendering Engine v2**: Mejora radical en la legibilidad de la documentación con soporte para H3, bloques de cita premium y tipografía optimizada.
