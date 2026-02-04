@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-02-03
+
+### Added
+- Login page (`/login`) with social authentication (Google, GitHub) and email/password forms
+- Templates showcase page (`/templates`) featuring 6 professional boilerplate templates
+- "How It Works" section on home page with 4-step process visualization
+- Testimonials section with user reviews and 5-star ratings
+- FAQ section with accordion functionality for common questions
+- Final CTA section with compelling copy and trust indicators
+- Mobile hamburger menu with smooth animations using AnimatePresence
+- Scroll-triggered animations throughout the site using Framer Motion
+- Responsive design optimizations for mobile, tablet, and desktop
+- ARIA labels and accessibility improvements across all components
+
+### Changed
+- Enhanced home page with comprehensive sections and footer integration
+- Improved navbar with mobile-first responsive design
+- Updated footer component integration across all pages
+- Better visual hierarchy and spacing throughout the application
+
+### Fixed
+- Mobile navigation experience with proper menu toggle
+- Responsive layout issues on smaller screens
+
+
 ## [1.1.0] - 2026-02-03
 
 ### Added
@@ -43,6 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Professional dark theme UI with animations
 - Comprehensive README documentation
 
-[Unreleased]: https://github.com/yourusername/boilr/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/yourusername/boilr/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/yourusername/boilr/releases/tag/v1.0.0
+[Unreleased]: https://github.com/Raishark/Boilr/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/Raishark/Boilr/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/Raishark/Boilr/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/Raishark/Boilr/releases/tag/v1.0.0
