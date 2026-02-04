@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-02-04
+
+### Added
+- **New Marketing Pages**: Implemented `/features` and `/how-it-works` with high-end glassmorphic designs and animations.
+- **Enhanced Review Step**: Redesigned the final generation step with descriptive names and professional icons.
+- **Nav Refinement**: Integrated new pages into the global navigation system.
+
 ## [1.9.0] - 2026-02-04
 
 ### Fixed

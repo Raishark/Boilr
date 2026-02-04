@@ -422,40 +422,49 @@ function GenerateContent() {
                                         <p className="text-foreground/60 text-lg mb-10 max-w-md mx-auto">Tu configuración está preparada con los mejores servicios del mercado.</p>
                                         <div className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left max-w-3xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                             <div className="space-y-3">
-                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Core</h4>
+                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Stack Core</h4>
                                                 {[
-                                                    { label: "Frontend", value: config.frontend },
-                                                    { label: "Database", value: config.db },
-                                                    { label: "Auth", value: config.auth },
+                                                    { label: "Frontend", value: config.frontend === 'nextjs' ? 'Next.js 15' : 'Remix (Pronto)', icon: Zap },
+                                                    { label: "Database", value: config.db === 'supabase' ? 'Supabase (PG)' : config.db === 'mongodb' ? 'MongoDB' : 'Prisma + Docker', icon: Database },
+                                                    { label: "Auth", value: config.auth === 'clerk' ? 'Clerk UX' : config.auth === 'supabase' ? 'Supabase Auth' : config.auth === 'nextauth' ? 'NextAuth' : 'Ninguno', icon: CheckCircle2 },
                                                 ].map(item => (
-                                                    <div key={item.label} className="flex justify-between items-center px-2">
-                                                        <span className="text-foreground/60 text-xs">{item.label}</span>
-                                                        <span className="font-bold capitalize text-xs">{item.value}</span>
+                                                    <div key={item.label} className="flex justify-between items-center px-2 group/item">
+                                                        <div className="flex items-center gap-2">
+                                                            <item.icon className="w-3 h-3 text-primary/40 group-hover/item:text-primary transition-colors" />
+                                                            <span className="text-foreground/60 text-xs">{item.label}</span>
+                                                        </div>
+                                                        <span className="font-bold text-xs">{item.value}</span>
                                                     </div>
                                                 ))}
                                             </div>
                                             <div className="space-y-3">
                                                 <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Servicios</h4>
                                                 {[
-                                                    { label: "Payments", value: config.payments },
-                                                    { label: "Email", value: config.email },
-                                                    { label: "Analytics", value: config.analytics },
+                                                    { label: "Pagos", value: config.payments === 'stripe' ? 'Stripe' : 'Ninguno', icon: CreditCard },
+                                                    { label: "Email", value: config.email === 'resend' ? 'Resend' : 'Ninguno', icon: Mail },
+                                                    { label: "Analytics", value: config.analytics === 'posthog' ? 'PostHog' : config.analytics === 'google' ? 'Google' : 'Ninguno', icon: BarChart },
                                                 ].map(item => (
-                                                    <div key={item.label} className="flex justify-between items-center px-2">
-                                                        <span className="text-foreground/60 text-xs">{item.label}</span>
-                                                        <span className="font-bold capitalize text-xs">{item.value}</span>
+                                                    <div key={item.label} className="flex justify-between items-center px-2 group/item">
+                                                        <div className="flex items-center gap-2">
+                                                            <item.icon className="w-3 h-3 text-primary/40 group-hover/item:text-primary transition-colors" />
+                                                            <span className="text-foreground/60 text-xs">{item.label}</span>
+                                                        </div>
+                                                        <span className="font-bold text-xs">{item.value}</span>
                                                     </div>
                                                 ))}
                                             </div>
                                             <div className="space-y-3">
-                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Infra</h4>
+                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Despliegue</h4>
                                                 {[
-                                                    { label: "Deploy", value: config.deploy },
-                                                    { label: "Docker", value: config.docker ? "Sí" : "No" },
+                                                    { label: "Hosting", value: config.deploy === 'vercel' ? 'Vercel' : 'Manual', icon: Cloud },
+                                                    { label: "Docker", value: config.docker ? "Habilitado" : "Deshabilitado", icon: Terminal },
                                                 ].map(item => (
-                                                    <div key={item.label} className="flex justify-between items-center px-2">
-                                                        <span className="text-foreground/60 text-xs">{item.label}</span>
-                                                        <span className="font-bold capitalize text-xs">{item.value}</span>
+                                                    <div key={item.label} className="flex justify-between items-center px-2 group/item">
+                                                        <div className="flex items-center gap-2">
+                                                            <item.icon className="w-3 h-3 text-primary/40 group-hover/item:text-primary transition-colors" />
+                                                            <span className="text-foreground/60 text-xs">{item.label}</span>
+                                                        </div>
+                                                        <span className="font-bold text-xs">{item.value}</span>
                                                     </div>
                                                 ))}
                                             </div>
