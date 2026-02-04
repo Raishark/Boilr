@@ -42,12 +42,30 @@ function GenerateContent() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
+    const [activeTemplate, setActiveTemplate] = useState<string | null>(null);
+
     useEffect(() => {
         const templateId = searchParams.get("template");
         if (templateId && TEMPLATE_CONFIGS[templateId]) {
             setConfig(prev => ({ ...prev, ...TEMPLATE_CONFIGS[templateId] }));
+            setActiveTemplate(templateId);
         }
     }, [searchParams]);
+
+    const clearTemplate = () => {
+        setActiveTemplate(null);
+        // Reset to basic defaults
+        setConfig({
+            frontend: "nextjs",
+            db: "supabase",
+            auth: "supabase",
+            payments: "none",
+            email: "none",
+            analytics: "none",
+            deploy: "vercel",
+            docker: true,
+        });
+    };
 
     const handleGenerate = async () => {
         setIsGenerating(true);
@@ -80,9 +98,19 @@ function GenerateContent() {
 
     const OptionButton = ({ id, name, desc, icon: Icon, type }: OptionButtonProps) => {
         const isSelected = config[type] === id;
+        const isOptional = ["payments", "email", "analytics", "auth"].includes(type);
+
+        const handleClick = () => {
+            if (isOptional && isSelected && id !== "none") {
+                setConfig({ ...config, [type]: "none" as never });
+            } else {
+                setConfig({ ...config, [type]: id as never });
+            }
+        };
+
         return (
             <button
-                onClick={() => setConfig({ ...config, [type]: id as never })}
+                onClick={handleClick}
                 className={cn(
                     "p-6 rounded-2xl border-2 text-left transition-all group relative overflow-hidden",
                     isSelected ? "border-primary bg-primary/5 shadow-lg shadow-primary/5" : "border-border hover:border-border/80"
@@ -194,6 +222,28 @@ function GenerateContent() {
                                 transition={{ duration: 0.3 }}
                                 className="flex-1"
                             >
+                                <AnimatePresence>
+                                    {activeTemplate && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="mb-8 px-6 py-3 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-between"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <Rocket className="w-4 h-4 text-primary" />
+                                                <span className="text-sm font-bold">Recomendación para <span className="text-primary capitalize">{activeTemplate.replace("-", " ")}</span> aplicada</span>
+                                            </div>
+                                            <button
+                                                onClick={clearTemplate}
+                                                className="text-xs font-black text-primary hover:underline"
+                                            >
+                                                LIMPIAR Y PERSONALIZAR
+                                            </button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+
                                 {currentStep === 0 && (
                                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                                         <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Stack Principal</h2>
@@ -230,10 +280,11 @@ function GenerateContent() {
                                             </div>
                                             <div>
                                                 <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Autenticación</h4>
-                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                                    <OptionButton type="auth" id="supabase" name="Supabase Auth" desc="Integración nativa." />
-                                                    <OptionButton type="auth" id="clerk" name="Clerk" desc="UX premium instantánea." />
-                                                    <OptionButton type="auth" id="nextauth" name="NextAuth" desc="Control total open-source." />
+                                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                                    <OptionButton type="auth" id="supabase" name="Supabase Auth" desc="Nativo." />
+                                                    <OptionButton type="auth" id="clerk" name="Clerk" desc="Premium UX." />
+                                                    <OptionButton type="auth" id="nextauth" name="NextAuth" desc="Open source." />
+                                                    <OptionButton type="auth" id="none" name="Ninguno" desc="Sin Auth." />
                                                 </div>
                                             </div>
                                         </div>
@@ -245,29 +296,37 @@ function GenerateContent() {
                                         <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Funcionalidades Hero</h2>
                                         <p className="text-foreground/60 text-lg mb-10">Lo que hace que un proyecto pase de hobby a negocio.</p>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                                             <OptionButton
                                                 type="payments" id="stripe" name="Stripe"
-                                                desc="Suscripciones, webhooks y checkout listos."
+                                                desc="Pagos y suscripciones."
                                                 icon={CreditCard}
                                             />
                                             <OptionButton
                                                 type="email" id="resend" name="Resend"
-                                                desc="Emails transaccionales y marketing."
+                                                desc="Emails transaccionales."
                                                 icon={Mail}
+                                            />
+                                            <OptionButton
+                                                type="payments" id="none" name="Ninguno"
+                                                desc="Sin pagos/email."
                                             />
                                         </div>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                             <OptionButton
                                                 type="analytics" id="posthog" name="PostHog"
-                                                desc="Product analytics, heatmaps y features flags."
+                                                desc="Analytics + Heatmaps."
                                                 icon={BarChart}
                                             />
                                             <OptionButton
                                                 type="deploy" id="vercel" name="Vercel"
-                                                desc="Deploy optimizado con un clic."
+                                                desc="Optimizado con un clic."
                                                 icon={Cloud}
+                                            />
+                                            <OptionButton
+                                                type="analytics" id="none" name="Ninguno"
+                                                desc="Sin analíticas."
                                             />
                                         </div>
                                     </div>
