@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Terminal } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
+import { Logo } from "./logo";
 
 export function Footer() {
     return (
@@ -9,12 +10,7 @@ export function Footer() {
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="flex items-center gap-2 mb-6 group">
-                            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-6 transition-transform shadow-lg shadow-primary/20">
-                                <Terminal className="w-6 h-6 text-white text-primary-foreground" />
-                            </div>
-                            <span className="text-2xl font-black tracking-tighter">BOILR</span>
-                        </Link>
+                        <Logo className="mb-6" />
                         <p className="text-foreground/60 text-lg max-w-sm mb-8">
                             El generador de boilerplates definitivo para desarrolladores modernos. Construye más rápido, escala mejor.
                         </p>
@@ -35,6 +31,7 @@ export function Footer() {
                         <h4 className="font-bold mb-6 uppercase tracking-widest text-sm text-primary">Producto</h4>
                         <ul className="space-y-4 text-foreground/60">
                             <li><Link href="/generate" className="hover:text-primary transition-colors">Generador</Link></li>
+                            <li><Link href="/templates" className="hover:text-primary transition-colors">Plantillas</Link></li>
                             <li><Link href="/features" className="hover:text-primary transition-colors">Características</Link></li>
                             <li><Link href="/how-it-works" className="hover:text-primary transition-colors">Cómo Funciona</Link></li>
                             <li><a href="https://github.com/Raishark/Boilr" target="_blank" className="hover:text-primary transition-colors">Open Source</a></li>

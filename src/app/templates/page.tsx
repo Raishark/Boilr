@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Zap, Database, Shield, CreditCard, Rocket, Code, Globe, Server, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 
 const templates = [
     {
@@ -126,6 +127,13 @@ export default function TemplatesPage() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-primary/10 blur-[120px] rounded-full -z-10" />
 
                 <div className="container mx-auto max-w-6xl text-center">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="mb-12 flex justify-center"
+                    >
+                        <Logo iconSize="lg" />
+                    </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

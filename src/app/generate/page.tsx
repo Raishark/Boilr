@@ -23,6 +23,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ProjectConfig } from "@/types/config";
 import { generateBoilerplate } from "@/services/generator";
+import { Logo } from "@/components/logo";
 
 const STEPS = [
     { id: "frontend", name: "Stack", icon: Rocket },
@@ -224,12 +225,7 @@ function GenerateContent() {
             <div className="max-w-5xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-12">
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform shadow-lg shadow-primary/20">
-                            <Terminal className="w-5 h-5 text-white" />
-                        </div>
-                        <span className="text-xl font-black tracking-tighter">BOILR</span>
-                    </Link>
+                    <Logo iconSize="sm" />
                     <Link href="/" className="flex items-center gap-2 text-sm font-bold text-foreground/40 hover:text-primary transition-colors pr-2">
                         <ArrowLeft className="w-4 h-4" /> INICIO
                     </Link>
