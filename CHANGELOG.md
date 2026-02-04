@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-02-04
+
+### Added
+- **Beautiful Docs**: Transformed `/docs` into a premium, card-based interface with animations.
+- **Micro-animations**: Added Framer Motion transitions for a "notification-style" documentary flow.
+- **Section Parsing**: Automatic markdown splitting into logical UI blocks.
+- **Premium UI**: Improved `DocsLayout` with glassmorphic sidebar and high-end typography.
+
 ## [1.5.0] - 2026-02-04
 
 ### Added
