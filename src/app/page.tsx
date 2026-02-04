@@ -36,8 +36,16 @@ export default function Home() {
                 <p className="text-foreground/60 leading-relaxed">{f.desc}</p>
               </div>
             ))}
+            <div className="mt-16 text-center">
+              <Link
+                href="/templates"
+                className="inline-flex items-center gap-2 text-foreground/40 hover:text-primary transition-all text-sm font-black uppercase tracking-widest group"
+              >
+                Ver todas las plantillas profesionales
+                <span className="w-8 h-px bg-foreground/10 group-hover:bg-primary/30 group-hover:w-12 transition-all" />
+              </Link>
+            </div>
           </div>
-        </div>
       </section>
     </main>
   );

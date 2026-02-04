@@ -1,5 +1,6 @@
 import { Terminal, Github, Rocket } from "lucide-react";
 import Link from "next/link";
+import { Logo } from "@/components/logo";
 
 export default function DocsLayout({
     children,
@@ -10,15 +11,7 @@ export default function DocsLayout({
         <div className="min-h-screen bg-background text-foreground flex flex-col">
             <header className="border-b border-border/50 py-6 px-6 sticky top-0 bg-background/60 backdrop-blur-xl z-50">
                 <div className="container mx-auto flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-6 transition-all shadow-lg shadow-primary/20">
-                            <Terminal className="w-6 h-6 text-primary-foreground" />
-                        </div>
-                        <div className="flex flex-col -gap-1">
-                            <span className="text-xl font-black tracking-tighter leading-none">BOILR</span>
-                            <span className="text-primary text-[10px] font-black tracking-widest uppercase">Documentation</span>
-                        </div>
-                    </Link>
+                    <Logo subtitle="Documentation" />
                     <nav className="flex items-center gap-8">
                         <Link href="/" className="text-sm font-bold text-foreground/40 hover:text-primary transition-colors">Volver al Inicio</Link>
                         <Link href="/generate" className="px-6 py-3 bg-primary text-primary-foreground rounded-2xl text-sm font-black hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
