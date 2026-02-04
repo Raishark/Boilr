@@ -9,7 +9,7 @@
 ### Supporting Branches
 - **`feature/*`**: New features (e.g., `feature/stripe-integration`)
 - **`hotfix/*`**: Critical production fixes (e.g., `hotfix/fix-icon-imports`)
-- **`release/*`**: Release preparation (e.g., `release/v1.0.0`)
+- **`release/*`**: Release preparation (e.g., `release/v1.0.0`). **Mandatory** for every version bump to maintain history integrity.
 
 ---
 
