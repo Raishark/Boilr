@@ -1,196 +1,71 @@
-# Changelog
+# Historial de Cambios (Changelog) 📜
 
-All notable changes to this project will be documented in this file.
+Todos los cambios notables en este proyecto serán documentados en este archivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+> [!NOTE]
+> El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.4.0] - 2026-02-04
-### Added
-- **Live Snippet Preview**: Real-time code previews for the selected stack in the generator.
-- **Vercel Analytics**: Integrated official Vercel Web Analytics for performance monitoring.
-### Fixed
-- Improved generator UI layout for better horizontal scaling on large screens.
-
-## [2.3.1] - 2026-02-04
-### Changed
-- **Premium Documentation**: Completely revamped the root `README.md` to highlight features and professional design.
-### Fixed
-- Updated versioning for all core components and badges.
-
-## [2.3.0] - 2026-02-04
-### Added
-- **Shareable URLs**: Users can now share their exact generator configuration via a URL query parameter (`?c=...`).
-- **Config Serialization**: Integrated Base64-based configuration sharing logic.
-- **Copy-to-Clipboard**: Added a "Compartir" button with visual feedback for easy URL sharing.
-### Fixed
-- Improved generator initialization logic to prioritize shared configurations.
-
-## [2.2.1] - 2026-02-04
-### Removed
-- GitHub Actions workflows (`ci-cd.yml` and `release.yml`) to simplify development flow.
-### Fixed
-- Updated versioning for all core components.
-
-## [2.2.0] - 2026-02-04
-### Added
-- **Local Persistence**: The generator now saves your progress and configuration in `localStorage`.
-- **Reset Functionality**: Added a "Reiniciar Todo" button to clear saved state and start fresh.
-- **UX Improvement**: Version badges and metadata updated to v2.2.0.
-
-## [2.1.1] - 2026-02-04
-### Fixed
-- Removed duplicate footers on Features and How It Works pages.
-- Streamlined global layout to ensure consistent spacing across all routes.
-- Updated versioning for all core components.
-
-## [2.1.0] - 2026-02-04
-
-### Added
-- **Premium Error Handling**: Custom designed `not-found.tsx` (404) and global `error.tsx` pages.
-- **Flow Optimization**: Fixed broken anchor links in Hero component to point to dedicated pages.
-- **Visual Polish**: Updated version badges and footer metadata.
-
-## [2.0.0] - 2026-02-04
-
-### Added
-- **New Marketing Pages**: Implemented `/features` and `/how-it-works` with high-end glassmorphic designs and animations.
-- **Enhanced Review Step**: Redesigned the final generation step with descriptive names and professional icons.
-- **Nav Refinement**: Integrated new pages into the global navigation system.
-
-## [1.9.0] - 2026-02-04
-
-### Fixed
-- **Navigation Unification**: Unified all `Link` and anchor tags for consistent cross-page navigation.
-- **Redirect Fixes**: Pointed all external resources (Contributing, Changelog, Support) to their correct GitHub locations.
-- **Docs Sidebar**: Enabled sidebar links in the documentation layout.
-- **Cleanup**: Removed dead links and unimplemented pages (Pricing, Login) for a cleaner UI.
-
-## [1.8.0] - 2026-02-04
-
-### Added
-- **Quick Start Presets**: New "Turbo SaaS", "Lite App", and "Dev Pro" presets for instant configuration.
-- **Base UI Library**: Generated projects now include premium `Navbar`, `Footer`, `Hero`, and `ThemeProvider` components.
-- **Boilr Insights**: Intelligent feedback system in the review step with configuration tips.
-- **Theme Support**: Default dark/light mode integration with `next-themes` and polished Tailwind variables.
-- **Improved Page Layout**: Generated landing pages now feature a high-impact hero section and structured next-step cards.
-
-## [1.7.0] - 2026-02-04
-
-### Added
-- **Total MD Transformation**: Documentation engine now converts 100% of markdown (links, bold, inline code) into premium React components.
-- **Detailed README**: Expanded repository documentation with startup guides, architecture, and contribution standards.
-- **Modified License**: Updated `LICENSE` with explicit clauses for creator attribution and social credit for [Raishark](https://github.com/Raishark).
-- **Service Mastery**: Improved documentation on internal services and generators.
-
-## [1.6.0] - 2026-02-04
-
-### Added
-- **Beautiful Docs**: Transformed `/docs` into a premium, card-based interface with animations.
-- **Micro-animations**: Added Framer Motion transitions for a "notification-style" documentary flow.
-- **Section Parsing**: Automatic markdown splitting into logical UI blocks.
-- **Premium UI**: Improved `DocsLayout` with glassmorphic sidebar and high-end typography.
-
-## [1.5.0] - 2026-02-04
-
-### Added
-- **Dynamic Documentation**: New `/docs` page that stays synchronized with the GitHub repository.
-- **Enhanced UX**: "RECOMENDADO" badges in the generator to guide users.
-- **Intelligent Logic**: Automatic Docker enablement when using Prisma, with clear UI notifications.
-- **Client-First Flow**: Improved button states and clearer "Ninguno" (None) options.
-- **Navigation**: Updated footer with direct links to the creator's GitHub and social profiles.
-
-## [1.4.0] - 2026-02-04
-
+## [2.4.0] - 2026-02-04 🚀
 ### Añadido
-- **Generador Ultra-Refinado**: Nueva interfaz de selección más intuitiva y agrupada.
-- **Soporte Docker**: Opción para incluir `Dockerfile` y `docker-compose.yml` en el proyecto generado.
-- **Configuración Completa**:
-  - Generación de clientes para **Stripe**, **Resend** y **PostHog**.
-  - Configuración automática de **NextAuth** (route handlers) y **Clerk** (middleware).
-  - Soporte para **MongoDB** (Mongoose).
-- **UX Mejorada**: Botones explícitos de "Ninguno" por categoría y resumen de configuración detallado antes de generar.
+- **Live Snippet Preview**: Previsualización de código en tiempo real para el stack seleccionado en el generador.
+- **Vercel Analytics**: Integración oficial de Vercel Web Analytics para monitoreo de rendimiento.
+- **Identidad v2.4**: Actualización de badges y metadatos en Hero y Footer.
 
 ### Corregido
-- Estructura interna del componente de generación para mejor rendimiento y mantenibilidad.
-- Tipado estricto en el generador de configuración.
-- Manejo de recomendaciones de plantillas con opción de reset total.
+- Mejora del layout del generador para escalado horizontal en pantallas grandes.
+- Limpieza de ramas de Git ya fusionadas.
 
-## [1.3.1] - 2026-02-04
+---
+
+## [2.3.1] - 2026-02-04 💎
+### Cambiado
+- **Premium Documentation**: Refactorización completa del `README.md` con estética profesional y alertas de GitHub.
+### Corregido
+- Sincronización de versiones en todos los componentes principales.
+
+---
+
+## [2.3.0] - 2026-02-04 🔗
 ### Añadido
-- Opción de "Toggle" para deseleccionar servicios opcionales.
-- Aviso de template aplicado con opción de limpieza.
-- Opción "Ninguno" para Autenticación.
+- **URLs Compartibles**: Los usuarios pueden compartir su configuración exacta mediante un parámetro de consulta (`?c=...`).
+- **Config Serialization**: Implementación de lógica de compartición basada en Base64.
+- **Copy-to-Clipboard**: Botón "Compartir" con feedback visual.
 
-## [1.3.0] - 2026-02-04
+---
 
-### Changed
-- Synchronized versioning across `package.json`, `Footer`, and `CHANGELOG`.
-- Improved generator UI with better loading states.
+## [2.2.1] - 2026-02-04 🧹
+### Eliminado
+- Workflows de GitHub Actions (`ci-cd.yml` y `release.yml`) para simplificar el flujo de desarrollo hacia Vercel.
 
-## [1.2.0] - 2026-02-03
+---
 
-### Added
-- Login page (`/login`) with social authentication (Google, GitHub) and email/password forms
-- Templates showcase page (`/templates`) featuring 6 professional boilerplate templates
-- "How It Works" section on home page with 4-step process visualization
-- Testimonials section with user reviews and 5-star ratings
-- FAQ section with accordion functionality for common questions
-- Final CTA section with compelling copy and trust indicators
-- Mobile hamburger menu with smooth animations using AnimatePresence
-- Scroll-triggered animations throughout the site using Framer Motion
-- Responsive design optimizations for mobile, tablet, and desktop
-- ARIA labels and accessibility improvements across all components
+## [2.2.0] - 2026-02-04 💾
+### Añadido
+- **Persistencia Local**: El generador ahora guarda el progreso y la configuración en `localStorage`.
+- **Función de Reset**: Botón "Reiniciar Todo" para limpiar el estado guardado.
 
-### Changed
-- Enhanced home page with comprehensive sections and footer integration
-- Improved navbar with mobile-first responsive design
-- Updated footer component integration across all pages
-- Better visual hierarchy and spacing throughout the application
+---
 
-### Fixed
-- Mobile navigation experience with proper menu toggle
-- Responsive layout issues on smaller screens
+## [2.1.0] - 2026-02-04 🛠️
+### Añadido
+- **Manejo de Errores Premium**: Páginas `not-found.tsx` (404) y `error.tsx` globales con diseños de alta gama.
+- **Optimización de Flujo**: Corrección de enlaces rotos en el componente Hero.
 
+---
 
-## [1.1.0] - 2026-02-03
+## [2.0.0] - 2026-02-04 ✨
+### Añadido
+- **Nuevas Páginas de Marketing**: Implementación de `/features` y `/how-it-works` con diseños glassmorphic.
+- **Paso de Revisión Mejorado**: Rediseño del paso final de generación con iconos profesionales.
 
-### Added
-- Back button on `/generate` page for improved navigation
-- Professional footer component with links and copyright information
-- CHANGELOG.md for version tracking
-- CONTRIBUTING.md with contribution guidelines
-- LICENSE file (MIT)
-- CODE_OF_CONDUCT.md for community standards
-- Repository field in package.json
-- Enhanced README with badges and better structure
+---
 
-### Changed
-- Improved header layout on generate page
-- Better visual hierarchy and responsive design
-- Updated documentation structure
+## [Historial Anterior]
+*(Versiones v1.0.0 a v1.9.0)*
+- Implementación del motor de documentación dinámica.
+- Soporte para Docker, Prisma, Supabase y MongoDB.
+- Integración de Stripe, Resend y PostHog.
+- Sistema multi-paso de configuración de Boilerplates.
 
-### Fixed
-- Navigation flow improvements
-
-## [1.0.0] - 2026-02-03
-
-### Added
-- Initial release of Boilr
-- Next.js 15 boilerplate generator
-- Multi-step configuration wizard
-- Support for Next.js and Remix frameworks
-- Database options: Supabase, MongoDB, Prisma
-- Authentication options: Supabase Auth, Clerk, NextAuth
-- Stripe payment integration
-- Vercel deployment configuration
-- Docker support
-- Automatic ZIP generation with configured project
-- Professional dark theme UI with animations
-- Comprehensive README documentation
-
-[Unreleased]: https://github.com/Raishark/Boilr/compare/v1.2.0...HEAD
-[1.3.0]: https://github.com/Raishark/Boilr/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/Raishark/Boilr/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/Raishark/Boilr/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/Raishark/Boilr/releases/tag/v1.0.0
+---
+*Para ver el historial completo y detallado, consulta los [Releases en GitHub](https://github.com/Raishark/Boilr/releases).*

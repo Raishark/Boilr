@@ -1,156 +1,85 @@
-# Contributing to Boilr
+# Contribuyendo a Boilr 🤝
 
-First off, thank you for considering contributing to Boilr! It's people like you that make Boilr such a great tool.
+¡Gracias por considerar contribuir a **Boilr**! Es gracias a personas como tú que esta herramienta sigue elevando el estándar de la comunidad. Queremos que el proceso sea lo más fluido y gratificante posible.
 
-## Code of Conduct
+> [!IMPORTANT]
+> Boilr sigue una filosofía de **Calidad sobre Cantidad**. Buscamos código limpio, bien tipado y que respete la estética premium del proyecto.
 
-This project and everyone participating in it is governed by our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+## 📜 Código de Conducta
 
-## How Can I Contribute?
+Este proyecto se rige por nuestro [Código de Conducta](CODE_OF_CONDUCT.md). Al participar, se espera que mantengas un ambiente respetuoso y profesional en todo momento.
 
-### Reporting Bugs
+## 🚀 ¿Cómo puedo contribuir?
 
-Before creating bug reports, please check the existing issues to avoid duplicates. When you create a bug report, include as many details as possible:
+### 🐛 Reportar Bugs
+Antes de crear un "Issue", por favor verifica que no exista uno similar. Al reportar, incluye:
+- **Título descriptivo**: Qué sucede y dónde.
+- **Pasos para reproducir**: 1, 2, 3...
+- **Entorno**: OS, versión de Node y navegador.
+- **Capturas**: Si es un error visual, una imagen vale más que mil palabras.
 
-- **Use a clear and descriptive title**
-- **Describe the exact steps to reproduce the problem**
-- **Provide specific examples**
-- **Describe the behavior you observed and what you expected**
-- **Include screenshots if relevant**
-- **Include your environment details** (OS, Node version, browser)
+### ✨ Sugerir Mejoras
+¡Amamos las ideas innovadoras! Si crees que Boilr puede ser más rápido, más bonito o más potente:
+- Explica el **valor añadido** de la mejora.
+- Propón una posible implementación técnica.
 
-### Suggesting Enhancements
+### 🛠️ Pull Requests
+Seguimos estrictamente el flujo de **[Git Flow](GITFLOW.md)**:
 
-Enhancement suggestions are tracked as GitHub issues. When creating an enhancement suggestion:
+1. **Fork & Branch**: Crea tu rama desde `develop`.
+2. **Nomenclatura**:
+   - `feat/nueva-funcionalidad`
+   - `fix/descripcion-del-error`
+   - `docs/mejoras-en-documentacion`
+3. **Calidad**: Asegúrate de que `npm run lint` y `npm run build` pasen sin errores.
+4. **Resumen**: Describe claramente qué cambia y por qué.
 
-- **Use a clear and descriptive title**
-- **Provide a detailed description of the suggested enhancement**
-- **Explain why this enhancement would be useful**
-- **List any similar features in other tools**
-
-### Pull Requests
-
-We follow the [Git Flow](GITFLOW.md) workflow. Please follow these steps:
-
-1. **Fork the repository** and create your branch from `develop`
-2. **Follow the naming convention**: `feature/your-feature-name`, `fix/bug-description`, or `hotfix/urgent-fix`
-3. **Make your changes** following our coding standards
-4. **Test your changes** thoroughly
-5. **Update documentation** if needed
-6. **Follow commit message conventions** (see below)
-7. **Create a Pull Request** to the `develop` branch
-
-## Development Setup
+## 💻 Configuración de Desarrollo
 
 ```bash
-# Clone your fork
-git clone https://github.com/your-username/boilr.git
+# 1. Clona tu fork
+git clone https://github.com/tu-usuario/boilr.git
 cd boilr
 
-# Install dependencies
+# 2. Instala dependencias
 npm install
 
-# Create a feature branch from develop
+# 3. Crea tu rama desde develop
 git checkout develop
-git pull origin develop
-git checkout -b feature/your-feature-name
+git checkout -b feature/mi-mejora
 
-# Start development server
+# 4. Inicia el modo desarrollo
 npm run dev
 ```
 
-## Coding Standards
+## 💎 Estándares de Código
 
-### TypeScript
-- Use TypeScript for all new code
-- Maintain strict type safety
-- Avoid using `any` type unless absolutely necessary
-- Export interfaces and types when they might be reused
+### TypeScript & React
+- **Tipado Estricto**: Evita el uso de `any`. Define interfaces claras.
+- **Componentes**: Usa componentes funcionales y Server Components (Next.js 15) donde sea posible.
+- **Clean Code**: Nombres de variables semánticos y funciones pequeñas y enfocadas.
 
-### React/Next.js
-- Use functional components with hooks
-- Follow React best practices
-- Use Server Components when possible (Next.js 15)
-- Keep components focused and reusable
+### Estética & UI
+- **Tailwind CSS**: Usa las clases de utilidad de Tailwind de forma coherente.
+- **Aesthetics First**: Si añades UI, asegúrate de que use micro-animaciones (Framer Motion) y respete el modo oscuro.
 
-### Styling
-- Use Tailwind CSS utility classes
-- Follow the existing design system (colors, spacing, etc.)
-- Ensure responsive design (mobile-first approach)
-- Test on multiple screen sizes
+> [!TIP]
+> Revisa `src/components/ui` para ver los patrones de diseño existentes antes de crear nuevos componentes.
 
-### Code Quality
-- Run `npm run lint` before committing
-- Fix all linting errors and warnings
-- Write clean, readable code with meaningful variable names
-- Add comments for complex logic
+## 📝 Convención de Commits
 
-## Commit Message Convention
+Usamos [Conventional Commits](https://www.conventionalcommits.org/):
+- `feat`: Nueva característica.
+- `fix`: Corrección de error.
+- `docs`: Solo documentación.
+- `style`: Cambios de formato (espacios, comas).
+- `refactor`: Cambio de código que ni corrige error ni añade feature.
 
-We follow [Conventional Commits](https://www.conventionalcommits.org/):
+**Ejemplo:** `feat(generator): add support for Shadcn UI components`
 
-```
-<type>(<scope>): <description>
+## ❓ ¿Preguntas?
 
-[optional body]
+Si tienes dudas, abre un Issue con la etiqueta `question` o contacta con los mantenedores de [Raishark](https://github.com/Raishark).
 
-[optional footer]
-```
-
-### Types
-- **feat**: New feature
-- **fix**: Bug fix
-- **docs**: Documentation changes
-- **style**: Code style changes (formatting, missing semicolons, etc.)
-- **refactor**: Code refactoring
-- **test**: Adding or updating tests
-- **chore**: Maintenance tasks (dependencies, build config, etc.)
-
-### Examples
-```bash
-feat(generator): add Vue.js template support
-fix(ui): correct responsive layout on mobile
-docs: update installation instructions
-chore: bump dependencies to latest versions
-```
-
-## Git Flow Workflow
-
-Please read our [GITFLOW.md](GITFLOW.md) for detailed information about our branching strategy.
-
-### Quick Reference
-- **main**: Production-ready code
-- **develop**: Integration branch for features
-- **feature/***: New features (branch from `develop`)
-- **hotfix/***: Critical production fixes (branch from `main`)
-- **release/***: Release preparation (branch from `develop`)
-
-## Testing
-
-Before submitting a PR:
-
-```bash
-# Lint your code
-npm run lint
-
-# Build the project
-npm run build
-
-# Test in production mode
-npm run start
-```
-
-## Documentation
-
-- Update the README.md if you change functionality
-- Update CHANGELOG.md following [Keep a Changelog](https://keepachangelog.com/) format
-- Add JSDoc comments for complex functions
-- Update type definitions if you modify interfaces
-
-## Questions?
-
-Feel free to open an issue with the `question` label, or reach out to the maintainers.
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
+---
+*Al contribuir, aceptas que tu código sea licenciado bajo la **Licencia MIT**.*
