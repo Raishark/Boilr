@@ -1,176 +1,102 @@
-# Git Flow Configuration for Boilr
+# Git Flow Masterclass: The Industrial Standard 🛡️
 
-## Branches
+Bienvenido al estándar de arquitectura de Git para **Boilr**. Este repositorio sigue una implementación estricta de Git Flow para garantizar que el historial sea auditable, legible y estéticamente profesional.
 
-### Main Branches
-- **`main`**: Production-ready code. Always deployable.
-- **`develop`**: Integration branch for features. Next release preparation.
+## 📊 Visualización del Flujo
 
-### Supporting Branches
-- **`feature/*`**: New features (e.g., `feature/stripe-integration`)
-- **`hotfix/*`**: Critical production fixes (e.g., `hotfix/fix-icon-imports`)
-- **`release/*`**: Release preparation (e.g., `release/v1.0.0`). **Mandatory** for every version bump to maintain history integrity.
+```mermaid
+gitGraph
+    commit id: "v2.3.1" tag: "v2.3.1"
+    branch develop
+    checkout develop
+    commit id: "init-dev"
+    branch feature/premium-docs
+    checkout feature/premium-docs
+    commit id: "feat-styling"
+    commit id: "feat-content"
+    checkout develop
+    merge feature/premium-docs
+    branch release/v2.5.0
+    checkout release/v2.5.0
+    commit id: "bump-v2.5.0"
+    checkout main
+    merge release/v2.5.0 tag: "v2.5.0"
+    checkout develop
+    merge release/v2.5.0
+    checkout main
+    branch hotfix/fix-404
+    checkout hotfix/fix-404
+    commit id: "fix-params"
+    checkout main
+    merge hotfix/fix-404 tag: "v2.6.1"
+    checkout develop
+    merge hotfix/fix-404
+```
 
 ---
 
-## Workflow
+## 🏗️ Estructura de Ramas
 
-### Starting a New Feature
+### Ramas Core (Eternas)
+- **`main`**: Código listo para producción. Cada commit aquí es una versión estable etiquetada.
+- **`develop`**: El eje central de la integración. Aquí converge todo el desarrollo activo.
+
+### Ramas de Soporte (Temporales)
+- **`feature/*`**: Ramas para nuevas funcionalidades. Siempre nacen de `develop` y vuelven a `develop` sin "fast-forward" (`--no-ff`).
+- **`hotfix/*`**: Para correcciones urgentes en producción. Nacen de `main` y vuelven tanto a `main` como a `develop`.
+- **`release/*`**: Ramas de preparación para el lanzamiento. Aquí se realizan los bumps de versión y pulido final. **Mandatorio** para cada salto de versión en `main`.
+
+---
+
+## 🛠️ Comandos de Élite
+
+### 1. Iniciar una Funcionalidad
 ```bash
-# Create feature branch from develop
 git checkout develop
-git pull origin develop
-git checkout -b feature/your-feature-name
+git checkout -b feature/mi-nueva-caracteristica
+```
 
-# Work on your feature
+### 2. Finalizar una Funcionalidad (El "Merge Bubble")
+```bash
+git checkout develop
+git merge --no-ff feature/mi-nueva-caracteristica
+git branch -d feature/mi-nueva-caracteristica
+```
+
+### 3. El Ciclo de Release
+```bash
+# Preparación
+git checkout develop
+git checkout -b release/v3.0.0
+
+# Ejecución
+# (Actualizar versiones, CHANGELOG, etc.)
 git add .
-git commit -m "feat: add your feature description"
+git commit -m "chore: release preparations v3.0.0"
 
-# Push to remote
-git push -u origin feature/your-feature-name
-
-# Create Pull Request to develop
-```
-
-### Finishing a Feature
-```bash
-# Merge to develop via Pull Request
-# After PR approval and merge, delete feature branch
-git checkout develop
-git pull origin develop
-git branch -d feature/your-feature-name
-git push origin --delete feature/your-feature-name
-```
-
-### Creating a Release
-```bash
-# Create release branch from develop
-git checkout develop
-git pull origin develop
-git checkout -b release/v1.0.0
-
-# Update version in package.json
-npm version 1.0.0 --no-git-tag-version
-
-# Commit version bump
-git add package.json package-lock.json
-git commit -m "chore: bump version to 1.0.0"
-
-# Merge to main
+# Cierre en Producción
 git checkout main
-git merge --no-ff release/v1.0.0
+git merge --no-ff release/v3.0.0
+git tag -a v3.0.0 -m "Release v3.0.0 - Masterclass Edition"
 
-# Tag the release
-git tag -a v1.0.0 -m "Release version 1.0.0"
-git push origin main --tags
-
-# Merge back to develop
+# Sincronización de Desarrollo
 git checkout develop
-git merge --no-ff release/v1.0.0
-git push origin develop
-
-# Delete release branch
-git branch -d release/v1.0.0
-```
-
-### Hotfix
-```bash
-# Create hotfix from main
-git checkout main
-git pull origin main
-git checkout -b hotfix/fix-description
-
-# Fix the issue
-git add .
-git commit -m "fix: description of the fix"
-
-# Merge to main
-git checkout main
-git merge --no-ff hotfix/fix-description
-git tag -a v1.0.1 -m "Hotfix version 1.0.1"
-git push origin main --tags
-
-# Merge to develop
-git checkout develop
-git merge --no-ff hotfix/fix-description
-git push origin develop
-
-# Delete hotfix branch
-git branch -d hotfix/fix-description
+git merge --no-ff release/v3.0.0
+git branch -d release/v3.0.0
 ```
 
 ---
 
-## Commit Message Convention
+## 💎 Filosofía de Commits
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+Seguimos una versión estricta de **Conventional Commits** para que el historial sea una obra de arte técnica:
 
-```
-<type>(<scope>): <description>
-
-[optional body]
-
-[optional footer]
-```
-
-### Types:
-- **feat**: New feature
-- **fix**: Bug fix
-- **docs**: Documentation changes
-- **style**: Code style changes (formatting, etc.)
-- **refactor**: Code refactoring
-- **test**: Adding or updating tests
-- **chore**: Maintenance tasks
-
-### Examples:
-```bash
-git commit -m "feat(generator): add MongoDB template support"
-git commit -m "fix(ui): restore missing icon imports"
-git commit -m "docs: update deployment guide"
-git commit -m "chore: bump dependencies"
-```
+- **`feat`**: Una nueva característica para el usuario.
+- **`fix`**: Una corrección de bug.
+- **`docs`**: Cambios solo en la documentación.
+- **`style`**: Cambios que no afectan el significado del código (espacios, formato, etc).
+- **`refactor`**: Cambio que no corrige bug ni añade feature.
+- **`chore`**: Tareas de mantenimiento o herramientas.
 
 ---
-
-## Automated Workflows
-
-### CI/CD Pipeline
-- **On Push to `main` or `develop`**: Run lint, build, deploy
-- **On Pull Request**: Run tests, create preview deployment
-- **On Tag `v*.*.*`**: Create GitHub release with changelog
-
-### Vercel Integration
-- **`main` branch**: Auto-deploy to production
-- **`develop` branch**: Auto-deploy to staging (if configured)
-- **Pull Requests**: Auto-deploy to preview URLs
-
----
-
-## Version Numbering
-
-Follow [Semantic Versioning](https://semver.org/):
-
-**MAJOR.MINOR.PATCH** (e.g., `1.2.3`)
-
-- **MAJOR**: Breaking changes
-- **MINOR**: New features (backward compatible)
-- **PATCH**: Bug fixes (backward compatible)
-
----
-
-## Quick Commands
-
-```bash
-# Setup develop branch (first time)
-git checkout -b develop
-git push -u origin develop
-
-# Start new feature
-git checkout develop && git pull && git checkout -b feature/my-feature
-
-# Hotfix
-git checkout main && git pull && git checkout -b hotfix/urgent-fix
-
-# Create release
-git checkout develop && git pull && git checkout -b release/v1.1.0
-```
+*Boilr: Arquitectura invisible, resultados premium.*
