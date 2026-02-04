@@ -40,7 +40,7 @@ export default function NotFound() {
                         transition={{ delay: 0.2 }}
                         className="text-xl text-foreground/60 mb-12 max-w-md mx-auto leading-relaxed italic"
                     >
-                        Parece que la página que buscas ha sido "boileada" fuera de existencia. O tal vez simplemente no existe aún.
+                        Parece que la página que buscas ha sido &quot;boileada&quot; fuera de existencia. O tal vez simplemente no existe aún.
                     </motion.p>
 
                     <motion.div
