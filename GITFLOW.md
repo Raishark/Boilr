@@ -1,102 +1,66 @@
-# Git Flow Masterclass: The Industrial Standard 🛡️
+# Git Flow Mastery: El Estándar Industrial 🛡️
 
-Bienvenido al estándar de arquitectura de Git para **Boilr**. Este repositorio sigue una implementación estricta de Git Flow para garantizar que el historial sea auditable, legible y estéticamente profesional.
+Bienvenido al estándar de arquitectura de Git para **Boilr**. Este repositorio sigue una implementación estricta de **Git Flow** para garantizar que el historial de versiones sea auditable, legible y estéticamente profesional.
 
-## 📊 Visualización del Flujo
+## 🏗️ Filosofía de Trabajo
 
-```mermaid
-gitGraph
-    commit id: "v2.3.1" tag: "v2.3.1"
-    branch develop
-    checkout develop
-    commit id: "init-dev"
-    branch feature/premium-docs
-    checkout feature/premium-docs
-    commit id: "feat-styling"
-    commit id: "feat-content"
-    checkout develop
-    merge feature/premium-docs
-    branch release/v2.5.0
-    checkout release/v2.5.0
-    commit id: "bump-v2.5.0"
-    checkout main
-    merge release/v2.5.0 tag: "v2.5.0"
-    checkout develop
-    merge release/v2.5.0
-    checkout main
-    branch hotfix/fix-404
-    checkout hotfix/fix-404
-    commit id: "fix-params"
-    checkout main
-    merge hotfix/fix-404 tag: "v2.6.1"
-    checkout develop
-    merge hotfix/fix-404
-```
+En Boilr, tratamos el historial de Git como parte del producto. Una rama limpia significa un desarrollo sin fricciones.
+
+> [!NOTE]
+> Seguimos [Conventional Commits](https://www.conventionalcommits.org/) para que cada cambio sea auto-explicativo y automatizable.
+
+## 📊 Estructura de Ramas
+
+| Rama | Tipo | Propósito |
+| :--- | :--- | :--- |
+| `main` | Core | Código listo para producción. Cada commit es una versión estable. |
+| `develop` | Core | Eje central de integración. Donde converge el desarrollo activo. |
+| `feature/*` | Temporal | Nuevas funcionalidades. Nacen de `develop` y vuelven vía PR. |
+| `release/*` | Temporal | Preparación de lanzamiento. Pulido final y "bumps" de versión. |
+| `hotfix/*` | Temporal | Correcciones críticas inmediatas en producción. |
 
 ---
 
-## 🏗️ Estructura de Ramas
-
-### Ramas Core (Eternas)
-- **`main`**: Código listo para producción. Cada commit aquí es una versión estable etiquetada.
-- **`develop`**: El eje central de la integración. Aquí converge todo el desarrollo activo.
-
-### Ramas de Soporte (Temporales)
-- **`feature/*`**: Ramas para nuevas funcionalidades. Siempre nacen de `develop` y vuelven a `develop` sin "fast-forward" (`--no-ff`).
-- **`hotfix/*`**: Para correcciones urgentes en producción. Nacen de `main` y vuelven tanto a `main` como a `develop`.
-- **`release/*`**: Ramas de preparación para el lanzamiento. Aquí se realizan los bumps de versión y pulido final. **Mandatorio** para cada salto de versión en `main`.
-
----
-
-## 🛠️ Comandos de Élite
+## 🛠️ Comandos Esenciales
 
 ### 1. Iniciar una Funcionalidad
 ```bash
 git checkout develop
-git checkout -b feature/mi-nueva-caracteristica
+git checkout -b feature/nombre-de-la-mejora
 ```
 
-### 2. Finalizar una Funcionalidad (El "Merge Bubble")
+### 2. Ciclo de Lanzamiento (Release)
+El momento donde el código se convierte en producto:
+
 ```bash
-git checkout develop
-git merge --no-ff feature/mi-nueva-caracteristica
-git branch -d feature/mi-nueva-caracteristica
-```
+# 1. Crear rama de preparación
+git checkout -b release/v3.0.0 develop
 
-### 3. El Ciclo de Release
-```bash
-# Preparación
-git checkout develop
-git checkout -b release/v3.0.0
-
-# Ejecución
-# (Actualizar versiones, CHANGELOG, etc.)
-git add .
-git commit -m "chore: release preparations v3.0.0"
-
-# Cierre en Producción
+# 2. Finalizar en Main (Producción)
 git checkout main
 git merge --no-ff release/v3.0.0
-git tag -a v3.0.0 -m "Release v3.0.0 - Masterclass Edition"
+git tag -a v3.0.0 -m "Versión 3.0.0 - Edición Masterclass"
 
-# Sincronización de Desarrollo
+# 3. Sincronizar Desarrollo
 git checkout develop
 git merge --no-ff release/v3.0.0
-git branch -d release/v3.0.0
 ```
 
 ---
 
-## 💎 Filosofía de Commits
+## 💎 Estándares de Commit
 
-Seguimos una versión estricta de **Conventional Commits** para que el historial sea una obra de arte técnica:
+Transformamos el historial en una obra de arte técnica:
 
 - **`feat`**: Una nueva característica para el usuario.
 - **`fix`**: Una corrección de bug.
 - **`docs`**: Cambios solo en la documentación.
-- **`style`**: Cambios que no afectan el significado del código (espacios, formato, etc).
-- **`refactor`**: Cambio que no corrige bug ni añade feature.
-- **`chore`**: Tareas de mantenimiento o herramientas.
+- **`style`**: Formato, espacios, puntos y comas (sin cambios en lógica).
+- **`refactor`**: Mejora de código que no añade feature ni arregla bug.
+- **`chore`**: Tareas de mantenimiento o configuración de herramientas.
+
+> [!TIP]
+> Un buen commit ahorra horas de debugging en el futuro. Sé descriptivo pero conciso.
 
 ---
-*Boilr: Arquitectura invisible, resultados premium.*
+*Boilr: Arquitectura invisible, resultados de élite.*

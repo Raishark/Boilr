@@ -39,6 +39,13 @@ export const DOCS_CONFIG: DocMetadata[] = [
         filename: "CONTRIBUTING.md"
     },
     {
+        slug: "git-flow",
+        title: "Git Flow Mastery",
+        description: "El estándar industrial de gestión de versiones aplicado a Boilr.",
+        icon: History,
+        filename: "GITFLOW.md"
+    },
+    {
         slug: "changelog",
         title: "Historial de Cambios",
         description: "Evolución del proyecto, versiones y mejoras implementadas.",
