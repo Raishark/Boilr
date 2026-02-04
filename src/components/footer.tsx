@@ -51,10 +51,10 @@ export function Footer() {
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm text-foreground/40">
-                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.4.0
+                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.5.0
                     </p>
                     <div className="flex gap-8 text-sm text-foreground/40">
-                        <Link href="/LICENSE" className="hover:text-foreground transition-colors">Licencia MIT</Link>
+                        <Link href="/license" className="hover:text-foreground transition-colors">Licencia MIT</Link>
                         <a href="https://github.com/Raishark/Boilr/blob/main/CODE_OF_CONDUCT.md" target="_blank" className="hover:text-foreground transition-colors">Código de Conducta</a>
                     </div>
                 </div>

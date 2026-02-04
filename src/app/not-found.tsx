@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Ghost, Home, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 
 export default function NotFound() {
     return (
@@ -64,8 +63,6 @@ export default function NotFound() {
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
         </main>
     );
 }
