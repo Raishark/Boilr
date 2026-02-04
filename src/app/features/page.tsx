@@ -1,7 +1,6 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 import { motion } from "framer-motion";
 import { Zap, Shield, Rocket, Smartphone, Cpu, Database, CreditCard } from "lucide-react";
 import Link from "next/link";
@@ -125,8 +124,6 @@ export default function FeaturesPage() {
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
         </main>
     );
 }
