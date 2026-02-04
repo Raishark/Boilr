@@ -18,21 +18,21 @@ export interface DocMetadata {
 
 export const DOCS_CONFIG: DocMetadata[] = [
     {
-        slug: "readme",
+        slug: "resumen",
         title: "Resumen General",
         description: "La puerta de entrada a Boilr. Características, stack y filosofía.",
         icon: FileText,
         filename: "README.md"
     },
     {
-        slug: "guide",
+        slug: "guia",
         title: "Guía de Uso",
         description: "Aprende a dominar el generador y optimizar tu flujo de trabajo.",
         icon: Book,
         filename: "GUIDE.md"
     },
     {
-        slug: "contributing",
+        slug: "contribuir",
         title: "Guía de Contribución",
         description: "¿Quieres mejorar Boilr? Aquí tienes las reglas del juego.",
         icon: Code2,
@@ -46,14 +46,14 @@ export const DOCS_CONFIG: DocMetadata[] = [
         filename: "CHANGELOG.md"
     },
     {
-        slug: "support",
+        slug: "soporte",
         title: "Soporte y Comunidad",
         description: "Canales oficiales para dudas, errores y colaboraciones.",
         icon: LifeBuoy,
         filename: "SUPPORT.md"
     },
     {
-        slug: "code-of-conduct",
+        slug: "codigo-de-conducta",
         title: "Código de Conducta",
         description: "Nuestros estándares para una comunidad sana y profesional.",
         icon: ShieldAlert,
