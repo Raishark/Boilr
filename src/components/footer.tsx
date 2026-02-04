@@ -35,8 +35,8 @@ export function Footer() {
                         <h4 className="font-bold mb-6 uppercase tracking-widest text-sm text-primary">Producto</h4>
                         <ul className="space-y-4 text-foreground/60">
                             <li><Link href="/generate" className="hover:text-primary transition-colors">Generador</Link></li>
-                            <li><Link href="/#features" className="hover:text-primary transition-colors">Características</Link></li>
-                            <li><Link href="/docs" className="hover:text-primary transition-colors">Documentación</Link></li>
+                            <li><Link href="/features" className="hover:text-primary transition-colors">Características</Link></li>
+                            <li><Link href="/how-it-works" className="hover:text-primary transition-colors">Cómo Funciona</Link></li>
                             <li><a href="https://github.com/Raishark/Boilr" target="_blank" className="hover:text-primary transition-colors">Open Source</a></li>
                         </ul>
                     </div>
@@ -54,7 +54,7 @@ export function Footer() {
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm text-foreground/40">
-                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v1.9.0
+                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.0.0
                     </p>
                     <div className="flex gap-8 text-sm text-foreground/40">
                         <Link href="/LICENSE" className="hover:text-foreground transition-colors">Licencia MIT</Link>
