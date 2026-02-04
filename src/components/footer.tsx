@@ -41,21 +41,21 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold mb-6 uppercase tracking-widest text-sm text-primary">Recursos</h4>
                         <ul className="space-y-4 text-foreground/60">
-                            <li><Link href="/docs/guide" className="hover:text-primary transition-colors">Guías</Link></li>
-                            <li><Link href="/docs/contributing" className="hover:text-primary transition-colors">Contribuir</Link></li>
+                            <li><Link href="/docs/guia" className="hover:text-primary transition-colors">Guías</Link></li>
+                            <li><Link href="/docs/contribuir" className="hover:text-primary transition-colors">Contribuir</Link></li>
                             <li><Link href="/docs/changelog" className="hover:text-primary transition-colors">Changelog</Link></li>
-                            <li><Link href="/docs/support" className="hover:text-primary transition-colors">Soporte</Link></li>
+                            <li><Link href="/docs/soporte" className="hover:text-primary transition-colors">Soporte</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm text-foreground/40">
-                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.6.0
+                        © {new Date().getFullYear()} Boilr. Todos los derechos reservados. v2.6.1
                     </p>
                     <div className="flex gap-8 text-sm text-foreground/40">
                         <Link href="/license" className="hover:text-foreground transition-colors">Licencia MIT</Link>
-                        <Link href="/docs/code-of-conduct" className="hover:text-foreground transition-colors">Código de Conducta</Link>
+                        <Link href="/docs/codigo-de-conducta" className="hover:text-foreground transition-colors">Código de Conducta</Link>
                     </div>
                 </div>
             </div>

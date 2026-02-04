@@ -3,8 +3,14 @@ import { DocsContent } from "@/components/docs-content";
 import { DOCS_CONFIG } from "@/lib/docs-config";
 import { notFound } from "next/navigation";
 
-export default async function DocDetail({ params }: { params: { slug: string } }) {
-    const { slug } = params;
+export async function generateStaticParams() {
+    return DOCS_CONFIG.map((doc) => ({
+        slug: doc.slug,
+    }));
+}
+
+export default async function DocDetail({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
     const doc = DOCS_CONFIG.find(d => d.slug === slug);
 
     if (!doc) {
