@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-02-04
+### Added
+- **Live Snippet Preview**: Real-time code previews for the selected stack in the generator.
+- **Vercel Analytics**: Integrated official Vercel Web Analytics for performance monitoring.
+### Fixed
+- Improved generator UI layout for better horizontal scaling on large screens.
+
 ## [2.3.1] - 2026-02-04
 ### Changed
 - **Premium Documentation**: Completely revamped the root `README.md` to highlight features and professional design.
