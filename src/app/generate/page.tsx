@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon, Server, Database, Terminal } from "lucide-react";
+import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon, Server, Database, Terminal, Mail, BarChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { generateBoilerplate } from "@/services/generator";
 import { ProjectConfig } from "@/types/config";
 
@@ -15,19 +16,38 @@ const STEPS = [
     { id: "review", name: "Review", icon: CheckCircle2 },
 ];
 
-export default function GeneratePage() {
+const TEMPLATE_CONFIGS: Record<string, Partial<ProjectConfig>> = {
+    "saas-starter": { frontend: "nextjs", db: "prisma", auth: "clerk", payments: "stripe", email: "resend", analytics: "posthog" },
+    "ecommerce": { frontend: "nextjs", db: "supabase", auth: "supabase", payments: "stripe", email: "resend", analytics: "google" },
+    "api-backend": { frontend: "nextjs", db: "prisma", auth: "nextauth", docker: true, email: "none", analytics: "none" },
+    "landing-page": { frontend: "nextjs", db: "supabase", auth: "supabase", payments: "none", email: "resend", analytics: "google" },
+    "blog-cms": { frontend: "nextjs", db: "prisma", auth: "nextauth", email: "resend", analytics: "posthog" },
+    "fullstack-app": { frontend: "nextjs", db: "supabase", auth: "clerk", email: "resend", analytics: "posthog" },
+};
+
+function GenerateContent() {
+    const searchParams = useSearchParams();
     const [currentStep, setCurrentStep] = useState(0);
     const [config, setConfig] = useState<ProjectConfig>({
         frontend: "nextjs",
         db: "supabase",
         auth: "supabase",
         payments: "stripe",
+        email: "resend",
+        analytics: "posthog",
         deploy: "vercel",
         docker: true,
     });
 
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    useEffect(() => {
+        const templateId = searchParams.get("template");
+        if (templateId && TEMPLATE_CONFIGS[templateId]) {
+            setConfig(prev => ({ ...prev, ...TEMPLATE_CONFIGS[templateId] }));
+        }
+    }, [searchParams]);
 
     const handleGenerate = async () => {
         setIsGenerating(true);
@@ -62,7 +82,7 @@ export default function GeneratePage() {
         const isSelected = config[type] === id;
         return (
             <button
-                onClick={() => setConfig({ ...config, [type]: id })}
+                onClick={() => setConfig({ ...config, [type]: id as never })}
                 className={cn(
                     "p-6 rounded-2xl border-2 text-left transition-all group relative overflow-hidden",
                     isSelected ? "border-primary bg-primary/5 shadow-lg shadow-primary/5" : "border-border hover:border-border/80"
@@ -86,7 +106,7 @@ export default function GeneratePage() {
 
     return (
         <main className="min-h-screen bg-background text-foreground pt-12 pb-24 px-6">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
                 {/* Header with Back Button */}
                 <div className="flex items-center justify-between mb-12">
                     <Link href="/" className="flex items-center gap-2 group">
@@ -129,7 +149,7 @@ export default function GeneratePage() {
                 </div>
 
                 {/* Form Content */}
-                <div className="bg-card border border-border rounded-[3rem] p-8 md:p-12 min-h-[550px] flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-black/50">
+                <div className="bg-card border border-border rounded-[3rem] p-8 md:p-12 min-h-[600px] flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-black/50">
                     <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 blur-[100px] -z-10" />
 
                     <AnimatePresence mode="wait">
@@ -145,7 +165,7 @@ export default function GeneratePage() {
                                 </div>
                                 <h2 className="text-4xl font-extrabold mb-4 tracking-tight">¡Proyecto Generado!</h2>
                                 <p className="text-foreground/60 text-lg mb-10 max-w-md mx-auto">
-                                    Tu boilerplate ha sido descargado. Revisa el archivo <code className="text-primary">README.md</code> dentro del ZIP para los pasos de configuración detallados.
+                                    Tu boilerplate ultra-específico está preparado con la última versión de Boilr. Revisa el ZIP para las instrucciones.
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                     <Link
@@ -225,11 +245,24 @@ export default function GeneratePage() {
                                         <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Funcionalidades Hero</h2>
                                         <p className="text-foreground/60 text-lg mb-10">Lo que hace que un proyecto pase de hobby a negocio.</p>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                             <OptionButton
                                                 type="payments" id="stripe" name="Stripe"
                                                 desc="Suscripciones, webhooks y checkout listos."
                                                 icon={CreditCard}
+                                            />
+                                            <OptionButton
+                                                type="email" id="resend" name="Resend"
+                                                desc="Emails transaccionales y marketing."
+                                                icon={Mail}
+                                            />
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <OptionButton
+                                                type="analytics" id="posthog" name="PostHog"
+                                                desc="Product analytics, heatmaps y features flags."
+                                                icon={BarChart}
                                             />
                                             <OptionButton
                                                 type="deploy" id="vercel" name="Vercel"
@@ -247,27 +280,39 @@ export default function GeneratePage() {
                                         </div>
                                         <h2 className="text-4xl font-extrabold mb-3 tracking-tight">¡Todo Listo!</h2>
                                         <p className="text-foreground/60 text-lg mb-10 max-w-md mx-auto">
-                                            Tu boilerplate ultra-específico está preparado para ser generado.
+                                            Tu configuración está preparada con los mejores servicios del mercado.
                                         </p>
 
-                                        <div className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left max-w-md mx-auto mb-8">
-                                            <h4 className="text-sm font-bold text-foreground/40 uppercase mb-4 px-2">Configuración Elegida</h4>
+                                        <div className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left max-w-2xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-3">
+                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2">Core</h4>
                                                 {[
-                                                    { label: "Frontend", value: config.frontend },
+                                                    { label: "Framework", value: config.frontend },
                                                     { label: "Database", value: config.db },
                                                     { label: "Auth", value: config.auth },
-                                                    { label: "Payments", value: config.payments },
                                                 ].map(item => (
                                                     <div key={item.label} className="flex justify-between items-center px-2">
-                                                        <span className="text-foreground/60">{item.label}</span>
-                                                        <span className="font-bold capitalize">{item.value}</span>
+                                                        <span className="text-foreground/60 text-sm">{item.label}</span>
+                                                        <span className="font-bold capitalize text-sm">{item.value}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className="space-y-3">
+                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2">Servicios</h4>
+                                                {[
+                                                    { label: "Payments", value: config.payments },
+                                                    { label: "Email", value: config.email },
+                                                    { label: "Analytics", value: config.analytics },
+                                                ].map(item => (
+                                                    <div key={item.label} className="flex justify-between items-center px-2">
+                                                        <span className="text-foreground/60 text-sm">{item.label}</span>
+                                                        <span className="font-bold capitalize text-sm">{item.value}</span>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
                                         <p className="text-xs text-foreground/40 italic">
-                                            Costo estimado de infra: <span className="text-secondary">$0 - $15/mes</span>
+                                            Costo estimado de infra: <span className="text-secondary">$0 - $25/mes</span> (Tiers gratuitos incluidos)
                                         </p>
                                     </div>
                                 )}
@@ -304,5 +349,17 @@ export default function GeneratePage() {
                 </div>
             </div>
         </main>
+    );
+}
+
+export default function GeneratePage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-primary" />
+            </div>
+        }>
+            <GenerateContent />
+        </Suspense>
     );
 }
