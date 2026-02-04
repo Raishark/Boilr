@@ -1,36 +1,37 @@
 # Soporte y Comunidad 🆘
 
-¡Estamos aquí para ayudarte! Si tienes problemas técnicos, preguntas sobre el uso de Boilr o quieres proponer una colaboración, utiliza los canales oficiales.
+¡Estamos aquí para ayudarte! Si tienes problemas técnicos, preguntas sobre el uso de Boilr o quieres proponer una colaboración, utiliza los canales oficiales de la plataforma.
 
-## 🛠️ Canales de Soporte
+## 🛠️ Canales de Soporte de Élite
 
-### 1. GitHub Issues (Bugs y Features)
+### GitHub Issues (Bugs y Features)
 El canal principal para reportar errores técnicos o solicitar nuevas funcionalidades.
 - [Abrir un nuevo Issue](https://github.com/Raishark/Boilr/issues/new)
-- Por favor, consulta los [Issues abiertos](https://github.com/Raishark/Boilr/issues) antes de abrir uno nuevo.
+- Por favor, consulta los [Issues abiertos](https://github.com/Raishark/Boilr/issues) antes de abrir uno nuevo para evitar duplicidad.
 
-### 2. Discusiones y Preguntas
-Para dudas sobre "cómo hacer X" o preguntas que no sean necesariamente errores del código.
+### Discusiones y Preguntas
+Para dudas sobre "cómo hacer X" o preguntas que no sean necesariamente errores del código, únete a la conversación.
 - [GitHub Discussions](https://github.com/Raishark/Boilr/discussions)
 
-### 3. Contacto Directo
-Para consultas comerciales, colaboraciones premium o temas de privacidad.
+### Contacto Directo & Social
+Para consultas comerciales, colaboraciones premium o temas de privacidad que requieran discreción.
 - **Autor**: [Raishark](https://github.com/Raishark)
 - **Twitter**: [@raishark](https://twitter.com/raishark)
 
 ## 💡 Antes de pedir ayuda...
 
 > [!TIP]
-> Muchas de las dudas comunes se resuelven revisando la [Documentación Principal](/docs) o el [README.md](README.md).
+> Muchas de las dudas comunes se resuelven revisando el [Portal de Documentación Principal](/docs) o ejecutando `npm run build` para comprobar errores de tipado.
 
-Asegúrate de:
+### Checkbox de Resolución Rápida
 1. Haber instalado las dependencias correctamente (`npm install`).
 2. Estar utilizando una versión estable de Node.js (v20+ recomendada).
-3. Haber configurado las variables de entorno si el proyecto lo requiere.
+3. Haber configurado las variables de entorno en tu archivo `.env`.
 
-## 🤝 Contribuciones de la Comunidad
+## 🤝 Comunidad y Colaboración
 
-Boilr es un proyecto **Open Source**. Si encuentras una solución a un problema común, ¡te animamos a documentarlo o enviar un Pull Request! Consulta nuestra [Guía de Contribución](CONTRIBUTING.md).
+Boilr es un proyecto **Open Source** con alma premium. Si encuentras una solución a un problema común, ¡te animamos a documentarlo o enviar un Pull Request! 
+- Consulta nuestra [Guía de Contribución](/docs/contribuir).
 
 ---
 *Gracias por confiar en Boilr para tus proyectos.*
