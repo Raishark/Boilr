@@ -96,8 +96,48 @@ function GenerateContent() {
         if (templateId && TEMPLATE_CONFIGS[templateId]) {
             setConfig(prev => ({ ...prev, ...TEMPLATE_CONFIGS[templateId] }));
             setActiveTemplate(templateId);
+        } else {
+            // Only try to load from localStorage if NO template is provided in URL
+            const savedConfig = localStorage.getItem("boilr_config");
+            const savedStep = localStorage.getItem("boilr_step");
+
+            if (savedConfig) {
+                try {
+                    setConfig(JSON.parse(savedConfig));
+                } catch (e) {
+                    console.error("Failed to load saved config", e);
+                }
+            }
+            if (savedStep) {
+                setCurrentStep(parseInt(savedStep, 10));
+            }
         }
     }, [searchParams]);
+
+    // Save to localStorage
+    useEffect(() => {
+        if (!isSuccess) {
+            localStorage.setItem("boilr_config", JSON.stringify(config));
+            localStorage.setItem("boilr_step", currentStep.toString());
+        }
+    }, [config, currentStep, isSuccess]);
+
+    const handleReset = () => {
+        localStorage.removeItem("boilr_config");
+        localStorage.removeItem("boilr_step");
+        setCurrentStep(0);
+        setConfig({
+            frontend: "nextjs",
+            db: "supabase",
+            auth: "supabase",
+            payments: "stripe",
+            email: "resend",
+            analytics: "posthog",
+            deploy: "vercel",
+            docker: true,
+        });
+        setActiveTemplate(null);
+    };
 
     const clearTemplate = () => {
         setActiveTemplate(null);
@@ -225,7 +265,17 @@ function GenerateContent() {
             <div className="max-w-5xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-12">
-                    <Logo iconSize="sm" />
+                    <div className="flex items-center gap-6">
+                        <Logo iconSize="sm" />
+                        {!isSuccess && (
+                            <button
+                                onClick={handleReset}
+                                className="text-[10px] font-black text-foreground/20 hover:text-primary transition-colors uppercase tracking-[0.2em] border border-border/50 px-3 py-1.5 rounded-lg hover:border-primary/30"
+                            >
+                                Reiniciar Todo
+                            </button>
+                        )}
+                    </div>
                     <Link href="/" className="flex items-center gap-2 text-sm font-bold text-foreground/40 hover:text-primary transition-colors pr-2">
                         <ArrowLeft className="w-4 h-4" /> INICIO
                     </Link>
