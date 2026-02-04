@@ -5,59 +5,38 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 > [!NOTE]
 > El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.8.0] - 2026-02-04 🛡️
+## [3.2.0] - 2026-02-04 💎
 ### Añadido
-- **Git Flow Standardization**: Re-alineación del historial del repositorio con los principios de Git Flow.
-- **Release Branch Mandatory**: Introducción de ramas de liberación obligatorias (`release/vX.Y.Z`) para garantizar la integridad del historial.
+- **Legibilidad Masterclass**: Eliminación de cursivas excesivas en toda la documentación para mejorar la experiencia de lectura de larga duración.
+- **Optimización de Tipografía**: Ajuste de letter-spacing (tracking) y aumento de contraste en bloques de texto secundarios.
+- **Estandarización de Layout**: Ancho de contenedor optimizado (65ch approx) en todas las subpáginas de `/docs` para una lectura cómoda.
 
 ### Corregido
-- Auditoría retroactiva de la estructura de merges desde la v2.3.1.
-- Sincronización de versiones en todos los componentes principales.
+- Consolidación de versiones en todo el ecosistema del proyecto.
+- Refinamiento de guías de uso y contribución para alinearlas con el nuevo estándar visual.
+
+## [3.1.1] - 2026-02-04 🛠️
+### Corregido
+- Refinamiento estético del motor de renderizado de Markdown.
+- Mejoras de espaciado y márgenes en la vista móvil de documentación.
+
+## [3.1.0] - 2026-02-04 📚
+### Añadido
+- **Docs Rendering Engine v3**: Migración a `react-markdown` con soporte completo para GFM (tablas, listas de tareas).
+- **Alertas Premium**: Implementación de bloques de información estilo GitHub (`[!NOTE]`, `[!TIP]`, etc.) con iconos dinámicos.
+- **Git Flow Integration**: Inclusión formal de la guía de maestría de Git Flow en el portal de inteligencia.
+
+## [3.0.0] - 2026-02-04 🚀
+### Añadido
+- **Git Flow Masterclass**: Re-alineación completa del historial del repositorio bajo estándares industriales.
+- **Versión Definitoria**: Salto a v3.0.0 marcando la madurez arquitectónica del proyecto.
+
+---
 
 ## [2.7.0] - 2026-02-04 🎨
 ### Añadido
-- **Docs Rendering Engine v2**: Mejora radical en la legibilidad de la documentación con soporte para H3, bloques de cita premium y tipografía optimizada.
-- **Audit de Contenido**: Refactorización técnica de todos los archivos `.md` para garantizar consistencia visual y lingüística.
-
-### Corregido
-- Mejora de los márgenes y espaciado en la vista de lectura de documentos.
-- Micro-animaciones sincronizadas para la carga de secciones de documentación.
-
----
-
-## [2.6.1] - 2026-02-04 🛠️
-### Corregido
-- **Fix 404 en Docs**: Solución al problema de renderizado asíncrono de `params` en Next.js 15.
-- **Localización de Slugs**: Traducción de rutas de documentos a español (`/docs/guia`, `/docs/soporte`).
-
----
-
-## [2.6.0] - 2026-02-04 📚
-### Añadido
-- **Direct Doc Access**: Los documentos se leen ahora directamente del sistema de archivos local para una velocidad instantánea.
-- **Notification Feed**: Rediseño de la página principal de `/docs` con estética de centro de notificaciones.
-
----
-
-## [2.5.0] - 2026-02-04 💎
-### Añadido
-- **Portal de Licencia**: Nueva página dedicada en `/license` con diseño glassmorphic.
-- **Navegación Pulida**: Botón "Inicio" en Navbar y fix de footers duplicados en toda la app.
-
----
-
-## [2.4.0] - 2026-02-04 🚀
-### Añadido
-- **Live Snippet Preview**: Previsualización de código en tiempo real en el generador.
-- **Vercel Analytics**: Integración oficial para monitoreo de rendimiento.
-
----
-
-## [Historial Anterior]
-- **v2.3.0**: URLs Compartibles con serialización Base64.
-- **v2.2.0**: Persistencia local con `localStorage`.
-- **v2.1.0**: Manejo de errores premium (404/Error pages).
-- **v2.0.0**: Nuevas páginas de marketing (`/features`, `/how-it-works`).
+- **Portal de Inteligencia**: Nueva sección de `/docs` con navegación interna asíncrona.
+- **Navegación Pulida**: Botón "Inicio" en Navbar y mejoras en la persistencia de sesión.
 
 ---
 *Para ver el historial completo y detallado, consulta los [Releases en GitHub](https://github.com/Raishark/Boilr/releases).*
