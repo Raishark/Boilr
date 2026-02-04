@@ -5,13 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] - 2026-02-04
+## [1.4.0] - 2026-02-04
 
-### Added
-- Template pre-selection: Clicking "Usar Plantilla" on `/templates` now pre-fills the generator with the correct configuration.
-- Added Email (Resend) and Analytics (PostHog/Google) configuration options to the generator.
-- Better state management for the generator using `Suspense` for query param handling.
-- Enhanced code modularity and cleaner imports.
+### Añadido
+- **Generador Ultra-Refinado**: Nueva interfaz de selección más intuitiva y agrupada.
+- **Soporte Docker**: Opción para incluir `Dockerfile` y `docker-compose.yml` en el proyecto generado.
+- **Configuración Completa**:
+  - Generación de clientes para **Stripe**, **Resend** y **PostHog**.
+  - Configuración automática de **NextAuth** (route handlers) y **Clerk** (middleware).
+  - Soporte para **MongoDB** (Mongoose).
+- **UX Mejorada**: Botones explícitos de "Ninguno" por categoría y resumen de configuración detallado antes de generar.
+
+### Corregido
+- Estructura interna del componente de generación para mejor rendimiento y mantenibilidad.
+- Tipado estricto en el generador de configuración.
+- Manejo de recomendaciones de plantillas con opción de reset total.
+
+## [1.3.1] - 2026-02-04
+### Añadido
+- Opción de "Toggle" para deseleccionar servicios opcionales.
+- Aviso de template aplicado con opción de limpieza.
+- Opción "Ninguno" para Autenticación.
+
+## [1.3.0] - 2026-02-04
 
 ### Changed
 - Synchronized versioning across `package.json`, `Footer`, and `CHANGELOG`.
