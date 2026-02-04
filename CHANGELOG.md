@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] - 2026-02-04
+### Removed
+- GitHub Actions workflows (`ci-cd.yml` and `release.yml`) to simplify development flow.
+### Fixed
+- Updated versioning for all core components.
+
 ## [2.2.0] - 2026-02-04
 ### Added
 - **Local Persistence**: The generator now saves your progress and configuration in `localStorage`.
