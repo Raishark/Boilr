@@ -1,4 +1,4 @@
-# Boilr 🚀 (v2.3.1)
+# Boilr 🚀 (v2.7.0)
 
 **Boilr** is a premium, open-source boilerplate generator for modern web developers. Built by [Raishark](https://github.com/Raishark), it is designed to skip the tedious setup and jump straight into building high-end applications with a world-class developer experience.
 
@@ -6,57 +6,66 @@
 
 ## 🌟 Características Premium
 
+> [!IMPORTANT]
+> Boilr no es solo un generador, es una base sólida diseñada para el éxito comercial instantáneo.
+
+### Generación & Persistencia
 - **Generación Instantánea**: Crea un proyecto full-stack en segundos con una configuración personalizada.
-- **Persistencia Inteligente (v2.2.0)**: Sincronización automática con `localStorage`. Tu configuración y progreso se mantienen incluso si cierras el navegador.
-- **URLs Compartibles (v2.3.0)**: Comparte tu stack exacto mediante serialización Base64 en la URL (`?c=...`). Sin base de datos, 100% colaborativo.
-- **Identidad Visual Premium**: Logo centralizado con animaciones de terminal y estética dark-mode refinada.
-- **Robustez de Flujo**: Páginas de error 404 y globales personalizadas con sistemas de recuperación automática.
-- **Filosofía Pro-Vercel**: Optimizado para el plan Hobby de Vercel. Zero Backend, Zero Database, Zero Cost.
+- **Persistencia Inteligente (v2.2.0)**: Sincronización automática con `localStorage`. Tu configuración se mantiene intacta.
+
+### Colaboración & Social (v2.3.0)
+- **URLs Compartibles**: Comparte tu stack exacto mediante serialización Base64 en la URL (`?c=...`). Sin base de datos, 100% colaborativo y viral.
+
+### Live Code Previews (v2.4.0)
+- **Snippets en Vivo**: Visualiza fragmentos de código reales basados en tu configuración actual antes de descargar el proyecto.
+
+### Documentación Integrada (v2.6.0)
+- **Portal de Inteligencia**: Nueva sección de `/docs` con navegación interna ultrarrápida (Server-Side Rendering) y estética de portal premium.
 
 ## 🛠️ Tech Stack & Herramientas
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router & Turbopack ready)
-- **UI/UX**: [Tailwind CSS](https://tailwindcss.com/) + [Framer Motion](https://www.framer.com/motion/)
-- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
-- **Base de Datos**: [Prisma](https://www.prisma.io/) / [Supabase](https://supabase.com/) / [MongoDB](https://www.mongodb.com/)
-- **Autenticación**: [Clerk](https://clerk.com/) / [NextAuth.js](https://next-auth.js.org/)
-- **Analíticas**: [PostHog](https://posthog.com/) / [Google Analytics](https://analytics.google.com/)
+### Core Framework
+- **Next.js 15**: App Router & Turbopack ready para un rendimiento máximo.
+- **TypeScript**: Tipado estricto para un desarrollo sin errores.
+
+### UI & Styling
+- **Tailwind CSS 4**: Estilizado moderno y utilitario.
+- **Framer Motion**: Animaciones fluidas y micro-interacciones de élite.
+
+### Backend & Integraciones
+- **Base de Datos**: Prisma como ORM con Supabase, MongoDB o PostgreSQL.
+- **Vercel Analytics**: Monitorización de rendimiento integrada desde la raíz.
 
 ## 🚀 Inicio Rápido
 
-1. **Visita Boilr**: Ve a [boilr.raishark.com](https://boilr.raishark.com).
-2. **Configura tu Proyecto**: Elige tu stack favorito en el generador interactivo.
-3. **Descarga el ZIP**: Obtén tu código fuente listo para usar.
-4. **Instala Dependencias**:
+1. **Configura tu Proyecto**: Ve al [Generador Interactivo](/generate) y elige tu stack.
+2. **Descarga el ZIP**: Obtén el código fuente optimizado.
+3. **Instala y Lanza**:
    ```bash
    npm install
-   ```
-5. **Configura Entorno**: Copia `.env.example` a `.env` y rellena tus credenciales.
-6. **Inicia el Desarrollo**:
-   ```bash
    npm run dev
    ```
 
-## 📂 Estructura del Proyecto Generado
+## 📂 Estructura del Proyecto
 
 ```bash
 ├── src/
 │   ├── app/            # App Router (Next.js 15)
 │   ├── components/     # UI Components (Premium Design)
-│   ├── lib/            # Shared Utilities (DB, Auth clients)
-│   ├── services/       # Core Business Logic
-│   └── types/          # Strict TypeScript Definitions
+│   ├── lib/            # Shared Utilities
+│   └── types/          # Strict Definitions
 ├── public/             # Optimized Static Assets
-└── docker/             # Optional Containerization docs
+└── docker/             # Optional Containers
 ```
 
 ## 🤝 Filosofía y Contribuciones
 
 Este proyecto es **Open Source** bajo la filosofía de Raishark. Valoramos la calidad sobre la cantidad.
 
+> "El código es arte cuando la arquitectura es invisible." — Raishark
+
 - **Crédito al Autor**: Cualquier derivado debe reconocer a **Raishark** como creador original.
-- **Eficiencia**: Diseñado para ejecutarse en infraestructuras Serverless sin costes operativos.
-- **Mejoras**: Si tienes una idea para elevar el estándar de Boilr, abre un Issue o un PR.
+- **Mejoras**: Si tienes una idea para elevar el estándar, revisa nuestra [Guía de Contribución](/docs/contribuir).
 
 ---
 *Hecho con ❤️ por [Raishark](https://github.com/Raishark)*
