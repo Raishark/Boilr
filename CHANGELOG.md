@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-02-04
+### Added
+- **Shareable URLs**: Users can now share their exact generator configuration via a URL query parameter (`?c=...`).
+- **Config Serialization**: Integrated Base64-based configuration sharing logic.
+- **Copy-to-Clipboard**: Added a "Compartir" button with visual feedback for easy URL sharing.
+### Fixed
+- Improved generator initialization logic to prioritize shared configurations.
+
 ## [2.2.1] - 2026-02-04
 ### Removed
 - GitHub Actions workflows (`ci-cd.yml` and `release.yml`) to simplify development flow.
