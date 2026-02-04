@@ -25,6 +25,16 @@ const TEMPLATE_CONFIGS: Record<string, Partial<ProjectConfig>> = {
     "fullstack-app": { frontend: "nextjs", db: "supabase", auth: "clerk", email: "resend", analytics: "posthog" },
 };
 
+const RECOMMENDED: Partial<Record<keyof ProjectConfig, string>> = {
+    frontend: "nextjs",
+    db: "supabase",
+    auth: "clerk",
+    payments: "stripe",
+    email: "resend",
+    analytics: "posthog",
+    deploy: "vercel",
+};
+
 function GenerateContent() {
     const searchParams = useSearchParams();
     const [currentStep, setCurrentStep] = useState(0);
@@ -87,11 +97,13 @@ function GenerateContent() {
     const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
 
     // Internal Components
-    const OptionButton = ({ id, name, desc, icon: Icon, type }: { id: string, name: string, desc: string, icon?: LucideIcon, type: keyof ProjectConfig }) => {
+    const OptionButton = ({ id, name, desc, icon: Icon, type, forced }: { id: string, name: string, desc: string, icon?: LucideIcon, type: keyof ProjectConfig, forced?: boolean }) => {
         const isSelected = config[type] === id;
         const isOptional = ["payments", "email", "analytics", "auth"].includes(type);
+        const isRecommended = RECOMMENDED[type] === id;
 
         const handleClick = () => {
+            if (forced) return;
             if (isOptional && isSelected && id !== "none") {
                 setConfig({ ...config, [type]: "none" as never });
             } else {
@@ -106,15 +118,25 @@ function GenerateContent() {
         return (
             <button
                 onClick={handleClick}
+                disabled={forced}
                 className={cn(
                     "p-6 rounded-2xl border-2 text-left transition-all group relative overflow-hidden",
-                    isSelected ? "border-primary bg-primary/5 shadow-lg shadow-primary/5" : "border-border hover:border-border/80"
+                    isSelected ? "border-primary bg-primary/5 shadow-lg shadow-primary/5" : "border-border hover:border-border/80",
+                    forced && "opacity-80 cursor-default"
                 )}
             >
                 <div className="flex items-start gap-4">
                     {Icon && <Icon className={cn("w-6 h-6 mt-1", isSelected ? "text-primary" : "text-foreground/40")} />}
                     <div>
-                        <h4 className="font-bold mb-1">{name}</h4>
+                        <div className="flex items-center gap-2 mb-1">
+                            <h4 className="font-bold">{name}</h4>
+                            {isRecommended && !isSelected && id !== "none" && (
+                                <span className="text-[10px] font-black bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase tracking-tighter">RECOMENDADO</span>
+                            )}
+                            {forced && (
+                                <span className="text-[10px] font-black bg-secondary/10 text-secondary px-2 py-0.5 rounded-full uppercase tracking-tighter">AUTO-ENABLE</span>
+                            )}
+                        </div>
                         <p className="text-sm opacity-60 text-foreground/60">{desc}</p>
                     </div>
                 </div>
@@ -127,20 +149,27 @@ function GenerateContent() {
         );
     };
 
-    const ToggleCard = ({ name, desc, icon: Icon, type }: { name: string, desc: string, icon: LucideIcon, type: "docker" }) => {
+    const ToggleCard = ({ name, desc, icon: Icon, type, forced }: { name: string, desc: string, icon: LucideIcon, type: "docker", forced?: boolean }) => {
         const isSelected = config[type];
         return (
             <button
-                onClick={() => setConfig({ ...config, [type]: !isSelected })}
+                onClick={() => !forced && setConfig({ ...config, [type]: !isSelected })}
+                disabled={forced}
                 className={cn(
                     "p-6 rounded-2xl border-2 text-left transition-all group relative overflow-hidden",
-                    isSelected ? "border-primary bg-primary/5 shadow-lg shadow-primary/5" : "border-border hover:border-border/80"
+                    isSelected ? "border-primary bg-primary/5 shadow-lg shadow-primary/5" : "border-border hover:border-border/80",
+                    forced && "opacity-80 cursor-default"
                 )}
             >
                 <div className="flex items-start gap-4">
                     <Icon className={cn("w-6 h-6 mt-1", isSelected ? "text-primary" : "text-foreground/40")} />
                     <div>
-                        <h4 className="font-bold mb-1">{name}</h4>
+                        <div className="flex items-center gap-2 mb-1">
+                            <h4 className="font-bold">{name}</h4>
+                            {forced && (
+                                <span className="text-[10px] font-black bg-secondary/10 text-secondary px-2 py-0.5 rounded-full uppercase tracking-tighter">REQUERIDO</span>
+                            )}
+                        </div>
                         <p className="text-sm opacity-60 text-foreground/60">{desc}</p>
                     </div>
                 </div>
@@ -251,10 +280,10 @@ function GenerateContent() {
                                             <div>
                                                 <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Autenticación</h4>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                                    <OptionButton type="auth" id="supabase" name="Supabase Auth" desc="Nativo." />
-                                                    <OptionButton type="auth" id="clerk" name="Clerk" desc="Premium UX." />
-                                                    <OptionButton type="auth" id="nextauth" name="NextAuth" desc="Open source." />
-                                                    <OptionButton type="auth" id="none" name="Ninguno" desc="Sin Auth." />
+                                                    <OptionButton type="auth" id="supabase" name="Supabase Auth" desc="Autenticación integrada." />
+                                                    <OptionButton type="auth" id="clerk" name="Clerk" desc="UX Premium y segura." />
+                                                    <OptionButton type="auth" id="nextauth" name="NextAuth" desc="Control total." />
+                                                    <OptionButton type="auth" id="none" name="Ninguno" desc="Sin autenticación." />
                                                 </div>
                                             </div>
                                         </div>
@@ -263,34 +292,42 @@ function GenerateContent() {
 
                                 {currentStep === 2 && (
                                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                                        <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Funcionalidades Hero</h2>
-                                        <p className="text-foreground/60 text-lg mb-10">Lo que hace que un proyecto pase de hobby a negocio.</p>
+                                        <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Funcionalidades Avanzadas</h2>
+                                        <p className="text-foreground/60 text-lg mb-10">Potencia tu proyecto con servicios recomendados.</p>
                                         <div>
                                             <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Finanzas y Comunicación</h4>
                                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                                                <OptionButton type="payments" id="stripe" name="Stripe" desc="Pagos." icon={CreditCard} />
-                                                <OptionButton type="payments" id="none" name="Sin Pagos" desc="Omitir." />
-                                                <OptionButton type="email" id="resend" name="Resend" desc="Emails." icon={Mail} />
-                                                <OptionButton type="email" id="none" name="Sin Email" desc="Omitir." />
+                                                <OptionButton type="payments" id="stripe" name="Stripe" desc="Pagos globales." icon={CreditCard} />
+                                                <OptionButton type="payments" id="none" name="Ninguno" desc="Omitir pagos." />
+                                                <OptionButton type="email" id="resend" name="Resend" desc="Email transactional." icon={Mail} />
+                                                <OptionButton type="email" id="none" name="Ninguno" desc="Omitir email." />
                                             </div>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Crecimiento</h4>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                                                <OptionButton type="analytics" id="posthog" name="PostHog" desc="Analytics." icon={BarChart} />
-                                                <OptionButton type="analytics" id="google" name="Google" desc="G. Analytics." icon={BarChart} />
-                                                <OptionButton type="analytics" id="none" name="Sin Analíticas" desc="Omitir." />
+                                                <OptionButton type="analytics" id="posthog" name="PostHog" desc="Eventos y heatmaps." icon={BarChart} />
+                                                <OptionButton type="analytics" id="google" name="Google" desc="Clásico Analytics." icon={BarChart} />
+                                                <OptionButton type="analytics" id="none" name="Ninguno" desc="Sin analíticas." />
                                             </div>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Despliegue e Infraestructura</h4>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                                <OptionButton type="deploy" id="vercel" name="Vercel" desc="Optimizado." icon={Cloud} />
-                                                <OptionButton type="deploy" id="manual" name="Manual" desc="Propio server." icon={Server} />
-                                                <ToggleCard type="docker" name="Docker" desc="Dockerfile." icon={Terminal} />
+                                                <OptionButton type="deploy" id="vercel" name="Vercel" desc="Zero config." icon={Cloud} />
+                                                <OptionButton type="deploy" id="manual" name="Manual" desc="Servidor propio." icon={Server} />
+                                                <ToggleCard type="docker" name="Docker" desc="Contenedores." icon={Terminal} forced={config.db === "prisma"} />
                                             </div>
+                                            {config.db === "prisma" && (
+                                                <div className="mt-4 p-4 bg-secondary/5 border border-secondary/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
+                                                    <Zap className="w-5 h-5 text-secondary" />
+                                                    <p className="text-sm text-foreground/60">
+                                                        <span className="font-bold text-secondary">Nota:</span> Docker ha sido habilitado automáticamente para manejar la base de datos de Prisma localmente.
+                                                    </p>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 )}
