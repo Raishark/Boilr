@@ -2,19 +2,56 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, CreditCard, Cloud, ArrowRight, ArrowLeft, CheckCircle2, Rocket, LucideIcon, Server, Database, Terminal, Mail, BarChart } from "lucide-react";
+import {
+    CheckCircle2,
+    Zap,
+    Rocket,
+    Terminal,
+    CreditCard,
+    Mail,
+    BarChart,
+    Cloud,
+    Server,
+    Sparkles,
+    ArrowLeft,
+    ArrowRight,
+    Database,
+    type LucideIcon
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { generateBoilerplate } from "@/services/generator";
 import { ProjectConfig } from "@/types/config";
+import { generateBoilerplate } from "@/services/generator";
 
 const STEPS = [
-    { id: "stack", name: "Stack", icon: Server },
-    { id: "infra", name: "Infra", icon: Database },
-    { id: "features", name: "Features", icon: Zap },
+    { id: "frontend", name: "Stack", icon: Rocket },
+    { id: "database", name: "DB", icon: Database },
+    { id: "auth", name: "Auth", icon: CheckCircle2 },
+    { id: "extras", name: "Extras", icon: Zap },
     { id: "review", name: "Review", icon: CheckCircle2 },
 ];
+
+const PRESETS: Record<string, { name: string; desc: string; config: Partial<ProjectConfig>; icon: LucideIcon }> = {
+    "turbo-saas": {
+        name: "Turbo SaaS",
+        desc: "El stack definitivo para facturar rápido.",
+        icon: Rocket,
+        config: { frontend: "nextjs", db: "prisma", auth: "clerk", payments: "stripe", email: "resend", analytics: "posthog", docker: true }
+    },
+    "lite-app": {
+        name: "Lite App",
+        desc: "Ligero, rápido y 100% gratuito.",
+        icon: Zap,
+        config: { frontend: "nextjs", db: "supabase", auth: "supabase", email: "resend", analytics: "google", docker: false }
+    },
+    "dev-pro": {
+        name: "Dev Pro",
+        desc: "Control total y arquitectura robusta.",
+        icon: Terminal,
+        config: { frontend: "nextjs", db: "prisma", auth: "nextauth", docker: true, email: "none", analytics: "none" }
+    }
+};
 
 const TEMPLATE_CONFIGS: Record<string, Partial<ProjectConfig>> = {
     "saas-starter": { frontend: "nextjs", db: "prisma", auth: "clerk", payments: "stripe", email: "resend", analytics: "posthog" },
@@ -255,11 +292,35 @@ function GenerateContent() {
 
                                 {currentStep === 0 && (
                                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                                        <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Stack Principal</h2>
-                                        <p className="text-foreground/60 text-lg mb-10">Elige los cimientos de tu aplicación.</p>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <OptionButton type="frontend" id="nextjs" name="Next.js 15" desc="App Router, Server Components y máximo rendimiento." icon={Rocket} />
-                                            <OptionButton type="frontend" id="remix" name="Remix" desc="Enfoque en estándares web y mutaciones fluidas." icon={Zap} />
+                                        <h2 className="text-4xl font-extrabold mb-3 tracking-tight">Elige tu Punto de Partida</h2>
+                                        <p className="text-foreground/60 text-lg mb-10">Escoge una configuración base o personaliza desde cero.</p>
+
+                                        <div className="mb-12">
+                                            <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Quick Start Presets</h4>
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                                {Object.entries(PRESETS).map(([id, preset]) => (
+                                                    <button
+                                                        key={id}
+                                                        onClick={() => {
+                                                            setConfig({ ...config, ...preset.config });
+                                                            setCurrentStep(1);
+                                                        }}
+                                                        className="p-6 rounded-2xl border-2 border-border hover:border-primary/50 bg-card/50 hover:bg-primary/5 transition-all text-left group"
+                                                    >
+                                                        <preset.icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
+                                                        <h4 className="font-bold text-lg mb-1">{preset.name}</h4>
+                                                        <p className="text-sm text-foreground/50 leading-relaxed">{preset.desc}</p>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Configuración Base</h4>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <OptionButton type="frontend" id="nextjs" name="Next.js" desc="App Router, Server Actions." icon={Zap} />
+                                                <OptionButton type="frontend" id="remix" name="Remix" desc="Próximamente." icon={Terminal} />
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -328,6 +389,26 @@ function GenerateContent() {
                                                     </p>
                                                 </div>
                                             )}
+
+                                            <div className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-2xl">
+                                                <div className="flex items-center gap-2 mb-4">
+                                                    <Sparkles className="w-5 h-5 text-primary" />
+                                                    <h4 className="font-bold text-sm uppercase tracking-wider">Boilr Insights</h4>
+                                                </div>
+                                                <div className="space-y-3">
+                                                    <p className="text-sm text-foreground/60 flex items-start gap-2">
+                                                        <span className="text-primary font-bold">✓</span> Se incluirá una **Librería de Componentes Base** (Navbar, Footer, Hero) pre-estilizada.
+                                                    </p>
+                                                    <p className="text-sm text-foreground/60 flex items-start gap-2">
+                                                        <span className="text-primary font-bold">✓</span> Configuración de **Dark Mode** lista para usar con Tailwind CSS.
+                                                    </p>
+                                                    {config.auth === 'clerk' && (
+                                                        <p className="text-sm text-foreground/60 flex items-start gap-2">
+                                                            <span className="text-primary font-bold">✓</span> El `Navbar` autodetectará la sesión de **Clerk** automáticamente.
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )}

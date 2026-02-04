@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-02-04
+
+### Added
+- **Quick Start Presets**: New "Turbo SaaS", "Lite App", and "Dev Pro" presets for instant configuration.
+- **Base UI Library**: Generated projects now include premium `Navbar`, `Footer`, `Hero`, and `ThemeProvider` components.
+- **Boilr Insights**: Intelligent feedback system in the review step with configuration tips.
+- **Theme Support**: Default dark/light mode integration with `next-themes` and polished Tailwind variables.
+- **Improved Page Layout**: Generated landing pages now feature a high-impact hero section and structured next-step cards.
+
 ## [1.7.0] - 2026-02-04
 
 ### Added
