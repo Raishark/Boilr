@@ -51,7 +51,7 @@ export default function Error({
                         transition={{ delay: 0.2 }}
                         className="text-xl text-foreground/60 mb-12 max-w-md mx-auto leading-relaxed italic"
                     >
-                        Algo salió mal en los servidores de Boilr. Estamos trabajando para "boilear" este bug de inmediato.
+                        Algo salió mal en los servidores de Boilr. Estamos trabajando para &quot;boilear&quot; este bug de inmediato.
                     </motion.p>
 
                     <motion.div
