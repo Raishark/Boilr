@@ -1,4 +1,4 @@
-# Boilr 🚀 (v3.1.0)
+# Boilr 🚀 (v3.2.0)
 
 **Boilr** es el generador de boilderplate de código abierto definitivo para desarrolladores que buscan la excelencia. Diseñado por [Raishark](https://github.com/Raishark), permite omitir la configuración tediosa y saltar directamente a la construcción de aplicaciones de alto nivel con una experiencia de desarrollo de clase mundial.
 

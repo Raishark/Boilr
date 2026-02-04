@@ -5,47 +5,47 @@
 ## 🛠️ El Flujo de Trabajo Maestro
 
 > [!TIP]
-> Boilr está diseñado para ser iterativo. Puedes cargar configuraciones anteriores pegando la URL compartida.
+> Boilr está diseñado para ser iterativo. Puedes cargar configuraciones anteriores pegando la URL compartida de un proyecto previo.
 
 ### 1. Configuración Estratégica
 En el generador interactivo, no solo eliges herramientas; estás definiendo el ADN de tu aplicación.
-- **Stack Core**: Recomendamos **Next.js 15** con **Supabase** para proyectos rápidos, o **Prisma** con **PostgreSQL** si necesitas control total de esquemas.
-- **Autenticación**: **Clerk** ofrece la mejor experiencia de usuario (UX) fuera de la caja.
+- **Stack Core**: Recomendamos **Next.js 15** con **Supabase** para una puesta en marcha inmediata, o **Prisma** con **PostgreSQL** para proyectos que requieren un control total de la base de datos.
+- **Autenticación**: **Clerk** ofrece la experiencia de integración más fluida y profesional del mercado actual.
 
 ### 2. Uso de Presets Inteligentes
-Si no quieres configurar paso a paso, utiliza nuestros **Presets** optimizados. Están diseñados por expertos para casos comunes:
-- **SaaS Starter**: Auth + DB + Stripe.
-- **Landing Page**: UI + Resend para captación.
-- **E-commerce**: Estructura de tienda con persistencia.
+Si prefieres ahorrar tiempo, utiliza nuestros **Presets** optimizados. Están diseñados por expertos para los casos de uso más comunes:
+- **SaaS Starter**: El combo ganador de Autenticación, Base de Datos y Stripe.
+- **Landing Page**: Enfoque en UI de alta conversión y Resend para captación de leads.
+- **E-commerce**: Estructura de tienda robusta con persistencia de carrito y pagos.
 
 ### 3. URLs Compartibles 🔗
-¿Trabajas en equipo? Configura el stack y presiona **"Compartir"**. El enlace resultante contiene toda la configuración en Base64.
-- Tu compañero verá exactamente lo mismo.
-- Ideal para revisiones técnicas rápidas sin commits pesados.
+¿Trabajas en equipo? Configura tu stack exacto y presiona **"Compartir"**. El enlace resultante contiene toda la arquitectura codificada en Base64.
+- Tu equipo visualizará exactamente la misma configuración al instante.
+- Es la forma más rápida de colaborar sin necesidad de intercambiar archivos o commits pesados.
 
 ## 🚀 Despliegue en Tiempo Récord
 
-Boilr es el mejor amigo de **Vercel**.
+Boilr es el aliado perfecto para ecosistemas basados en **Vercel**.
 
 ### Proceso de Lanzamiento
-1. Genera y descarga tu ZIP.
-2. Sube el código a tu repositorio.
-3. Importa en Vercel y configura las variables de entorno.
+1. Genera y descarga tu paquete de código optimizado.
+2. Sincroniza el código en tu repositorio Git.
+3. Importa el proyecto en Vercel y define las variables de entorno necesarias.
 
 > [!WARNING]
-> La seguridad es clave. Revisa siempre el archivo `.env.example` para asegurarte de que todas las API Keys requeridas estén configuradas en producción.
+> La seguridad de tus datos es primordial. Revisa minuciosamente el archivo `.env.example` para asegurar que todas las llaves de API críticas estén configuradas antes de pasar a producción.
 
-## 📂 Estructura del Código Generado
+## 📂 Arquitectura del Código Generado
 
-Tu proyecto tendrá una arquitectura limpia y modular:
-- **`src/app`**: El corazón de Next.js. Rutas y lógica de servidor.
-- **`src/components`**: Tus piezas de UI atomizadas y listas para Tailwind.
-- **`src/lib`**: Utilidades puras y clientes de integración (Prisma, Supabase).
-- **`src/services`**: Capa de negocio para integraciones complejas (Stripe API, Emails).
+Tu nuevo proyecto vendrá con una arquitectura de clase mundial, modular y escalable:
+- **`src/app`**: El motor de Next.js. Manejo de rutas, layouts y lógica de servidor.
+- **`src/components`**: Componentes de interfaz atomizados y optimizados para Tailwind CSS.
+- **`src/lib`**: Funciones de utilidad pura y clientes de base de datos (Prisma, Supabase).
+- **`src/services`**: Capa de negocio para integraciones complejas como Stripe o servicios de Email.
 
 ## 🆘 ¿Necesitas más ayuda?
 
-Si te encuentras con algún obstáculo, revisa nuestro portal de [Soporte](/docs/soporte).
+Si te encuentras con algún obstáculo técnico, no dudes en visitar nuestro portal de [Soporte](/docs/soporte).
 
 ---
 *Boilr: Construye el futuro, un componente a la vez.*
