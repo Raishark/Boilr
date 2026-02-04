@@ -25,7 +25,8 @@ import { ProjectConfig } from "@/types/config";
 import { generateBoilerplate } from "@/services/generator";
 import { Logo } from "@/components/logo";
 import { serializeConfig, deserializeConfig } from "@/lib/config-sharing";
-import { Share2, Check } from "lucide-react";
+import { Share2, Check, Code, Copy, Terminal as TerminalIcon } from "lucide-react";
+import { getLiveSnippets, Snippet } from "@/lib/live-snippets";
 
 const STEPS = [
     { id: "frontend", name: "Stack", icon: Rocket },
@@ -92,6 +93,39 @@ function GenerateContent() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [activeTemplate, setActiveTemplate] = useState<string | null>(null);
+
+    const [activeSnippetIndex, setActiveSnippetIndex] = useState(0);
+    const snippets = getLiveSnippets(config);
+
+    const CodePreview = ({ snippet }: { snippet: Snippet }) => {
+        const [copied, setCopied] = useState(false);
+        const handleCopy = () => {
+            navigator.clipboard.writeText(snippet.code || "");
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        };
+
+        if (!snippet) return null;
+
+        return (
+            <div className="bg-zinc-950 rounded-2xl border border-white/5 overflow-hidden shadow-2xl">
+                <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
+                    <div className="flex items-center gap-2">
+                        <TerminalIcon className="w-3 h-3 text-primary/60" />
+                        <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">{snippet.title}</span>
+                    </div>
+                    <button onClick={handleCopy} className="p-1.5 hover:bg-white/5 rounded-md transition-colors group">
+                        {copied ? <Check className="w-3 h-3 text-secondary" /> : <Copy className="w-3 h-3 text-white/20 group-hover:text-white/40" />}
+                    </button>
+                </div>
+                <div className="p-4 overflow-x-auto min-h-[200px]">
+                    <pre className="text-[11px] leading-relaxed font-mono whitespace-pre text-foreground/80">
+                        {snippet.code}
+                    </pre>
+                </div>
+            </div>
+        );
+    };
 
     useEffect(() => {
         const templateId = searchParams.get("template");
@@ -272,7 +306,7 @@ function GenerateContent() {
                         <div className="flex items-center gap-2 mb-1">
                             <h4 className="font-bold">{name}</h4>
                             {forced && (
-                                <span className="text-[10px] font-black bg-secondary/10 text-secondary px-2 py-0.5 rounded-full uppercase tracking-tighter">REQUERIDO</span>
+                                <span className="text-[10px] font-black bg-secondary/10 text-secondary px-2 py-0.5 rounded-full uppercase tracking-tighter">ESTADO FORZADO</span>
                             )}
                         </div>
                         <p className="text-sm opacity-60 text-foreground/60">{desc}</p>
@@ -510,53 +544,64 @@ function GenerateContent() {
                                         </div>
                                         <h2 className="text-4xl font-extrabold mb-3 tracking-tight">¡Todo Listo!</h2>
                                         <p className="text-foreground/60 text-lg mb-10 max-w-md mx-auto">Tu configuración está preparada con los mejores servicios del mercado.</p>
-                                        <div className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left max-w-3xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                            <div className="space-y-3">
-                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Stack Core</h4>
-                                                {[
-                                                    { label: "Frontend", value: config.frontend === 'nextjs' ? 'Next.js 15' : 'Remix (Pronto)', icon: Zap },
-                                                    { label: "Database", value: config.db === 'supabase' ? 'Supabase (PG)' : config.db === 'mongodb' ? 'MongoDB' : 'Prisma + Docker', icon: Database },
-                                                    { label: "Auth", value: config.auth === 'clerk' ? 'Clerk UX' : config.auth === 'supabase' ? 'Supabase Auth' : config.auth === 'nextauth' ? 'NextAuth' : 'Ninguno', icon: CheckCircle2 },
-                                                ].map(item => (
-                                                    <div key={item.label} className="flex justify-between items-center px-2 group/item">
-                                                        <div className="flex items-center gap-2">
-                                                            <item.icon className="w-3 h-3 text-primary/40 group-hover/item:text-primary transition-colors" />
-                                                            <span className="text-foreground/60 text-xs">{item.label}</span>
-                                                        </div>
-                                                        <span className="font-bold text-xs">{item.value}</span>
+                                        <div className="bg-white/5 border border-white/10 rounded-3xl p-6 text-left max-w-4xl mx-auto mb-8">
+                                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                                                {/* Config Summary */}
+                                                <div className="lg:col-span-4 space-y-6">
+                                                    <div className="space-y-3">
+                                                        <h4 className="text-[10px] font-black text-foreground/20 uppercase mb-4 px-2 border-b border-white/5 pb-2 tracking-[0.2em]">Stack Core</h4>
+                                                        {[
+                                                            { label: "Frontend", value: config.frontend === 'nextjs' ? 'Next.js 15' : 'Remix', icon: Zap },
+                                                            { label: "Database", value: config.db === 'supabase' ? 'Supabase' : config.db === 'mongodb' ? 'MongoDB' : 'Prisma', icon: Database },
+                                                            { label: "Auth", value: config.auth === 'clerk' ? 'Clerk' : config.auth === 'supabase' ? 'Supabase' : config.auth === 'nextauth' ? 'NextAuth' : 'None', icon: CheckCircle2 },
+                                                        ].map(item => (
+                                                            <div key={item.label} className="flex justify-between items-center px-2">
+                                                                <span className="text-foreground/40 text-[10px] font-bold uppercase">{item.label}</span>
+                                                                <span className="font-bold text-xs">{item.value}</span>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                ))}
-                                            </div>
-                                            <div className="space-y-3">
-                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Servicios</h4>
-                                                {[
-                                                    { label: "Pagos", value: config.payments === 'stripe' ? 'Stripe' : 'Ninguno', icon: CreditCard },
-                                                    { label: "Email", value: config.email === 'resend' ? 'Resend' : 'Ninguno', icon: Mail },
-                                                    { label: "Analytics", value: config.analytics === 'posthog' ? 'PostHog' : config.analytics === 'google' ? 'Google' : 'Ninguno', icon: BarChart },
-                                                ].map(item => (
-                                                    <div key={item.label} className="flex justify-between items-center px-2 group/item">
-                                                        <div className="flex items-center gap-2">
-                                                            <item.icon className="w-3 h-3 text-primary/40 group-hover/item:text-primary transition-colors" />
-                                                            <span className="text-foreground/60 text-xs">{item.label}</span>
-                                                        </div>
-                                                        <span className="font-bold text-xs">{item.value}</span>
+                                                    <div className="space-y-3">
+                                                        <h4 className="text-[10px] font-black text-foreground/20 uppercase mb-4 px-2 border-b border-white/5 pb-2 tracking-[0.2em]">Servicios</h4>
+                                                        {[
+                                                            { label: "Pagos", value: config.payments === 'stripe' ? 'Stripe' : 'None', icon: CreditCard },
+                                                            { label: "Email", value: config.email === 'resend' ? 'Resend' : 'None', icon: Mail },
+                                                            { label: "Extras", value: config.analytics === 'posthog' ? 'Analytics' : 'Basic', icon: BarChart },
+                                                        ].map(item => (
+                                                            <div key={item.label} className="flex justify-between items-center px-2">
+                                                                <span className="text-foreground/40 text-[10px] font-bold uppercase">{item.label}</span>
+                                                                <span className="font-bold text-xs">{item.value}</span>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                ))}
-                                            </div>
-                                            <div className="space-y-3">
-                                                <h4 className="text-sm font-bold text-foreground/40 uppercase mb-2 px-2 border-b border-white/10 pb-2">Despliegue</h4>
-                                                {[
-                                                    { label: "Hosting", value: config.deploy === 'vercel' ? 'Vercel' : 'Manual', icon: Cloud },
-                                                    { label: "Docker", value: config.docker ? "Habilitado" : "Deshabilitado", icon: Terminal },
-                                                ].map(item => (
-                                                    <div key={item.label} className="flex justify-between items-center px-2 group/item">
-                                                        <div className="flex items-center gap-2">
-                                                            <item.icon className="w-3 h-3 text-primary/40 group-hover/item:text-primary transition-colors" />
-                                                            <span className="text-foreground/60 text-xs">{item.label}</span>
-                                                        </div>
-                                                        <span className="font-bold text-xs">{item.value}</span>
+                                                </div>
+
+                                                {/* Code Preview Panel */}
+                                                <div className="lg:col-span-8 space-y-4">
+                                                    <div className="flex items-center gap-2 mb-2 px-1">
+                                                        <Code className="w-4 h-4 text-primary" />
+                                                        <span className="text-xs font-bold text-foreground/60">VISTA PREVIA DE CÓDIGO</span>
                                                     </div>
-                                                ))}
+                                                    <div className="grid grid-cols-1 gap-4">
+                                                        <div className="flex gap-2 mb-2">
+                                                            {snippets.map((s, i) => (
+                                                                <button
+                                                                    key={s.title}
+                                                                    onClick={() => setActiveSnippetIndex(i)}
+                                                                    className={cn(
+                                                                        "px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all border",
+                                                                        activeSnippetIndex === i
+                                                                            ? "bg-primary/20 border-primary/40 text-primary"
+                                                                            : "bg-white/5 border-white/5 text-foreground/40 hover:text-white/60"
+                                                                    )}
+                                                                >
+                                                                    {s.title}
+                                                                </button>
+                                                            ))}
+                                                        </div>
+                                                        <CodePreview snippet={snippets[activeSnippetIndex] || snippets[0]} />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
