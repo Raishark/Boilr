@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Template pre-selection: Clicking "Usar Plantilla" on `/templates` now pre-fills the generator with the correct configuration.
+- Added Email (Resend) and Analytics (PostHog/Google) configuration options to the generator.
 - Better state management for the generator using `Suspense` for query param handling.
 - Enhanced code modularity and cleaner imports.
 
