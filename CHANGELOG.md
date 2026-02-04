@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - 2026-02-04
+### Changed
+- **Premium Documentation**: Completely revamped the root `README.md` to highlight features and professional design.
+### Fixed
+- Updated versioning for all core components and badges.
+
 ## [2.3.0] - 2026-02-04
 ### Added
 - **Shareable URLs**: Users can now share their exact generator configuration via a URL query parameter (`?c=...`).

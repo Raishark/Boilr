@@ -1,27 +1,30 @@
-# Boilr 🚀
+# Boilr 🚀 (v2.3.1)
 
-**Boilr** is a premium, open-source boilerplate generator for modern web developers. Built by [Raishark](https://github.com/Raishark), it allows you to skip the tedious setup and jump straight into building your next big idea.
+**Boilr** is a premium, open-source boilerplate generator for modern web developers. Built by [Raishark](https://github.com/Raishark), it is designed to skip the tedious setup and jump straight into building high-end applications with a world-class developer experience.
 
-## 🌟 Características Principales
+![Boilr Preview](https://github.com/Raishark/Boilr/raw/main/public/og-image.png)
+
+## 🌟 Características Premium
 
 - **Generación Instantánea**: Crea un proyecto full-stack en segundos con una configuración personalizada.
-- **Stack Tecnológico Moderno**: Next.js, TypeScript, Tailwind CSS, Prisma, Supabase, y más.
-- **Integración de Servicios**: Configura autenticación (Clerk, NextAuth), bases de datos (PostgreSQL, MongoDB), emails (Resend), y analíticas (PostHog) con un solo clic.
-- **Soporte Docker**: Generación automática de `Dockerfile` y `docker-compose.yml` para un despliegue sin fricciones.
-- **Documentación Dinámica**: Sistema de docs integrado que se sincroniza directamente con este repositorio.
+- **Persistencia Inteligente (v2.2.0)**: Sincronización automática con `localStorage`. Tu configuración y progreso se mantienen incluso si cierras el navegador.
+- **URLs Compartibles (v2.3.0)**: Comparte tu stack exacto mediante serialización Base64 en la URL (`?c=...`). Sin base de datos, 100% colaborativo.
+- **Identidad Visual Premium**: Logo centralizado con animaciones de terminal y estética dark-mode refinada.
+- **Robustez de Flujo**: Páginas de error 404 y globales personalizadas con sistemas de recuperación automática.
+- **Filosofía Pro-Vercel**: Optimizado para el plan Hobby de Vercel. Zero Backend, Zero Database, Zero Cost.
 
 ## 🛠️ Tech Stack & Herramientas
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router & Turbopack ready)
+- **UI/UX**: [Tailwind CSS](https://tailwindcss.com/) + [Framer Motion](https://www.framer.com/motion/)
 - **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
-- **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
 - **Base de Datos**: [Prisma](https://www.prisma.io/) / [Supabase](https://supabase.com/) / [MongoDB](https://www.mongodb.com/)
 - **Autenticación**: [Clerk](https://clerk.com/) / [NextAuth.js](https://next-auth.js.org/)
 - **Analíticas**: [PostHog](https://posthog.com/) / [Google Analytics](https://analytics.google.com/)
 
 ## 🚀 Inicio Rápido
 
-1. **Visita Boilr**: Ve a [boilr.raishark.com](https://boilr.raishark.com) (o tu instancia local).
+1. **Visita Boilr**: Ve a [boilr.raishark.com](https://boilr.raishark.com).
 2. **Configura tu Proyecto**: Elige tu stack favorito en el generador interactivo.
 3. **Descarga el ZIP**: Obtén tu código fuente listo para usar.
 4. **Instala Dependencias**:
@@ -38,22 +41,22 @@
 
 ```bash
 ├── src/
-│   ├── app/            # App Router de Next.js
-│   ├── components/     # Componentes compartidos
-│   ├── lib/            # Utilidades y clientes (DB, Auth)
-│   ├── services/       # Lógica de negocio
-│   └── templates/      # Plantillas de generación
-├── public/             # Archivos estáticos
-└── docker/             # Configuración opcional de contenedores
+│   ├── app/            # App Router (Next.js 15)
+│   ├── components/     # UI Components (Premium Design)
+│   ├── lib/            # Shared Utilities (DB, Auth clients)
+│   ├── services/       # Core Business Logic
+│   └── types/          # Strict TypeScript Definitions
+├── public/             # Optimized Static Assets
+└── docker/             # Optional Containerization docs
 ```
 
-## 🤝 Contribuciones y Créditos
+## 🤝 Filosofía y Contribuciones
 
-Este proyecto es **Open Source** bajo una licencia modificada. Valoramos enormemente las contribuciones de la comunidad.
+Este proyecto es **Open Source** bajo la filosofía de Raishark. Valoramos la calidad sobre la cantidad.
 
-- **Crédito al Autor**: Cualquier derivado de este proyecto debe mantener una mención clara a **Raishark** como creador original.
-- **Comunicación**: Para cambios significativos o forks públicos, se recomienda encarecidamente contactar primero con el autor a través de [GitHub](https://github.com/Raishark).
-- **Mejoras**: Si encuentras un bug o tienes una idea, ¡abre un Issue o un PR!
+- **Crédito al Autor**: Cualquier derivado debe reconocer a **Raishark** como creador original.
+- **Eficiencia**: Diseñado para ejecutarse en infraestructuras Serverless sin costes operativos.
+- **Mejoras**: Si tienes una idea para elevar el estándar de Boilr, abre un Issue o un PR.
 
 ---
 *Hecho con ❤️ por [Raishark](https://github.com/Raishark)*
