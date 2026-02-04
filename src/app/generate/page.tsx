@@ -24,6 +24,8 @@ import { useSearchParams } from "next/navigation";
 import { ProjectConfig } from "@/types/config";
 import { generateBoilerplate } from "@/services/generator";
 import { Logo } from "@/components/logo";
+import { serializeConfig, deserializeConfig } from "@/lib/config-sharing";
+import { Share2, Check } from "lucide-react";
 
 const STEPS = [
     { id: "frontend", name: "Stack", icon: Rocket },
@@ -93,11 +95,22 @@ function GenerateContent() {
 
     useEffect(() => {
         const templateId = searchParams.get("template");
+        const sharedConfigEncoded = searchParams.get("c");
+
+        if (sharedConfigEncoded) {
+            const sharedConfig = deserializeConfig(sharedConfigEncoded);
+            if (sharedConfig) {
+                setConfig(sharedConfig);
+                setActiveTemplate(null);
+                return; // Shared config takes priority over templates or localStorage
+            }
+        }
+
         if (templateId && TEMPLATE_CONFIGS[templateId]) {
             setConfig(prev => ({ ...prev, ...TEMPLATE_CONFIGS[templateId] }));
             setActiveTemplate(templateId);
         } else {
-            // Only try to load from localStorage if NO template is provided in URL
+            // Only try to load from localStorage if NO template or shared config is provided
             const savedConfig = localStorage.getItem("boilr_config");
             const savedStep = localStorage.getItem("boilr_step");
 
@@ -137,6 +150,20 @@ function GenerateContent() {
             docker: true,
         });
         setActiveTemplate(null);
+    };
+
+    const [isSharing, setIsSharing] = useState(false);
+    const handleShare = async () => {
+        const encoded = serializeConfig(config);
+        const url = `${window.location.origin}${window.location.pathname}?c=${encoded}`;
+
+        try {
+            await navigator.clipboard.writeText(url);
+            setIsSharing(true);
+            setTimeout(() => setIsSharing(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy link:", err);
+        }
     };
 
     const clearTemplate = () => {
@@ -268,12 +295,29 @@ function GenerateContent() {
                     <div className="flex items-center gap-6">
                         <Logo iconSize="sm" />
                         {!isSuccess && (
-                            <button
-                                onClick={handleReset}
-                                className="text-[10px] font-black text-foreground/20 hover:text-primary transition-colors uppercase tracking-[0.2em] border border-border/50 px-3 py-1.5 rounded-lg hover:border-primary/30"
-                            >
-                                Reiniciar Todo
-                            </button>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={handleShare}
+                                    className={cn(
+                                        "flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] border px-3 py-1.5 rounded-lg transition-all",
+                                        isSharing
+                                            ? "bg-secondary/10 border-secondary text-secondary"
+                                            : "text-foreground/20 hover:text-primary border-border/50 hover:border-primary/30"
+                                    )}
+                                >
+                                    {isSharing ? (
+                                        <><Check className="w-3 h-3" /> Copiado</>
+                                    ) : (
+                                        <><Share2 className="w-3 h-3" /> Compartir</>
+                                    )}
+                                </button>
+                                <button
+                                    onClick={handleReset}
+                                    className="text-[10px] font-black text-foreground/20 hover:text-primary transition-colors uppercase tracking-[0.2em] border border-border/50 px-3 py-1.5 rounded-lg hover:border-primary/30"
+                                >
+                                    Reiniciar
+                                </button>
+                            </div>
                         )}
                     </div>
                     <Link href="/" className="flex items-center gap-2 text-sm font-bold text-foreground/40 hover:text-primary transition-colors pr-2">
