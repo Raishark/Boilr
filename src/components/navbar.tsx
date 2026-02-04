@@ -10,6 +10,7 @@ export function Navbar() {
             <Logo iconSize="sm" />
 
             <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-foreground/40 text-center">
+                <Link href="/" className="hover:text-primary transition-colors">Inicio</Link>
                 <Link href="/features" className="hover:text-primary transition-colors">Características</Link>
                 <Link href="/how-it-works" className="hover:text-primary transition-colors">Cómo funciona</Link>
                 <Link href="/docs" className="hover:text-primary transition-colors">Documentación</Link>
