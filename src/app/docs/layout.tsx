@@ -64,7 +64,7 @@ export default function DocsLayout({
                     </div>
                 </aside>
 
-                <main className="flex-1 max-w-4xl min-w-0">
+                <main className="flex-1 max-w-3xl min-w-0">
                     {children}
                 </main>
             </div>

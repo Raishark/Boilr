@@ -9,15 +9,16 @@ import { cn } from "@/lib/utils";
 import type { Components } from "react-markdown";
 
 /**
- * Custom components for ReactMarkdown to ensure professional styling
+ * Custom components for ReactMarkdown to ensure professional styling and high legibility.
+ * Removed excessive italics and adjusted tracking for a cleaner reading experience.
  */
 const MarkdownComponents: Components = {
     // Headings
     h2: ({ children }) => (
-        <div className="group/h2 mt-16 mb-8">
+        <div className="group/h2 mt-16 mb-8 text-left">
             <div className="flex items-center gap-4 mb-2">
                 <div className="w-1.5 h-8 bg-primary rounded-full transition-all group-hover/h2:h-10" />
-                <h2 className="text-3xl font-black tracking-tighter uppercase italic text-foreground">
+                <h2 className="text-3xl font-black tracking-tight uppercase text-foreground">
                     {children}
                 </h2>
                 <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
@@ -25,7 +26,7 @@ const MarkdownComponents: Components = {
         </div>
     ),
     h3: ({ children }) => (
-        <h3 className="text-xl font-bold text-foreground mt-10 mb-4 uppercase tracking-tight flex items-center gap-2">
+        <h3 className="text-xl font-bold text-foreground mt-10 mb-4 uppercase tracking-normal flex items-center gap-2">
             <span className="w-2 h-2 bg-primary/40 rounded-full" />
             {children}
         </h3>
@@ -55,7 +56,7 @@ const MarkdownComponents: Components = {
                 return (
                     <div className={cn("my-6 p-6 rounded-3xl border flex gap-4 items-start", styles.bg, styles.border)}>
                         <Icon className={cn("w-6 h-6 shrink-0 mt-1", styles.color)} />
-                        <div className="flex-1 text-lg leading-relaxed text-foreground/80 font-medium italic">
+                        <div className="flex-1 text-lg leading-relaxed text-foreground/90 font-medium">
                             {cleanContent}
                         </div>
                     </div>
@@ -64,7 +65,7 @@ const MarkdownComponents: Components = {
         }
 
         return (
-            <p className="text-lg md:text-xl leading-[1.8] text-foreground/70 mb-6 font-medium">
+            <p className="text-lg md:text-xl leading-[1.8] text-foreground/80 mb-6 font-medium max-w-prose">
                 {children}
             </p>
         );
@@ -74,11 +75,11 @@ const MarkdownComponents: Components = {
         <ul className="space-y-4 my-8">{children}</ul>
     ),
     li: ({ children }) => (
-        <li className="flex items-start gap-4 text-foreground/70 group/li">
+        <li className="flex items-start gap-4 text-foreground/80 group/li">
             <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-1 transition-colors group-hover/li:bg-primary/20">
                 <CheckCircle2 className="w-4 h-4 text-primary" />
             </div>
-            <span className="text-lg md:text-xl leading-relaxed">{children}</span>
+            <span className="text-lg md:text-xl leading-relaxed max-w-prose">{children}</span>
         </li>
     ),
     // Code blocks
@@ -104,9 +105,9 @@ const MarkdownComponents: Components = {
     },
     // Blockquotes
     blockquote: ({ children }) => (
-        <div className="relative py-6 pl-10 pr-6 rounded-[2rem] bg-card/30 border-l-4 border-primary italic my-8 group/quote">
+        <div className="relative py-6 pl-10 pr-6 rounded-[2rem] bg-card/50 border-l-4 border-primary my-8 group/quote">
             <Quote className="absolute top-6 left-3 w-5 h-5 text-primary/40" />
-            <div className="text-lg md:text-xl text-foreground/80 leading-relaxed">
+            <div className="text-lg md:text-xl text-foreground/80 leading-relaxed italic">
                 {children}
             </div>
         </div>
@@ -118,13 +119,13 @@ const MarkdownComponents: Components = {
         </div>
     ),
     thead: ({ children }) => (
-        <thead className="bg-primary/10 border-b border-border text-primary font-black uppercase tracking-wider italic">{children}</thead>
+        <thead className="bg-primary/10 border-b border-border text-primary font-black uppercase tracking-wider">{children}</thead>
     ),
     th: ({ children }) => (
         <th className="p-4 md:p-6">{children}</th>
     ),
     td: ({ children }) => (
-        <td className="p-4 md:p-6 border-b border-border/50 text-foreground/70">{children}</td>
+        <td className="p-4 md:p-6 border-b border-border/50 text-foreground/80">{children}</td>
     ),
     // Links
     a: ({ children, href }) => (
@@ -137,7 +138,7 @@ const MarkdownComponents: Components = {
         </a>
     ),
     // Strong/Bold
-    strong: ({ children }) => (
+    strong: ({ children }: any) => (
         <strong className="text-primary font-black">{children}</strong>
     ),
 };

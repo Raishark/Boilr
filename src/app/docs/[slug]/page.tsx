@@ -25,14 +25,14 @@ export default async function DocDetail({ params }: { params: Promise<{ slug: st
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-6">
                     Documento de Boilr
                 </div>
-                <h1 className="text-5xl font-black tracking-tighter mb-4 italic uppercase">
+                <h1 className="text-5xl font-black tracking-tight mb-4 uppercase">
                     {doc.title.split(" ").map((word, i, arr) => (
-                        <span key={i} className={i === arr.length - 1 ? "text-primary not-italic" : ""}>
+                        <span key={i} className={i === arr.length - 1 ? "text-primary" : ""}>
                             {word}{" "}
                         </span>
                     ))}
                 </h1>
-                <p className="text-xl text-foreground/60 max-w-2xl leading-relaxed italic">
+                <p className="text-xl text-foreground/80 max-w-2xl leading-relaxed font-medium">
                     {doc.description}
                 </p>
             </div>

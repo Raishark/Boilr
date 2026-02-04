@@ -33,10 +33,10 @@ export default function DocsPortal() {
                     <Bell className="w-3 h-3 fill-primary" />
                     Actualizaciones del Sistema
                 </motion.div>
-                <h1 className="text-5xl font-black tracking-tighter mb-4 italic uppercase">
-                    Portal de <span className="text-primary not-italic">Saber</span>
+                <h1 className="text-5xl font-black tracking-tight mb-4 uppercase">
+                    Portal de <span className="text-primary">Saber</span>
                 </h1>
-                <p className="text-xl text-foreground/60 max-w-xl leading-relaxed italic">
+                <p className="text-xl text-foreground/80 max-w-xl leading-relaxed font-medium">
                     Accede a toda la inteligencia de Boilr. Documentos sincronizados, guías de élite y estándares de la comunidad.
                 </p>
             </div>
@@ -62,14 +62,14 @@ export default function DocsPortal() {
 
                             <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <h3 className="font-black text-lg tracking-tight uppercase italic">{doc.title}</h3>
+                                    <h3 className="font-black text-lg tracking-tight uppercase">{doc.title}</h3>
                                     {idx === 0 && (
                                         <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[8px] font-black uppercase tracking-tighter border border-secondary/20">
                                             <Sparkles className="w-2 h-2 fill-secondary" /> Nuevo
                                         </span>
                                     )}
                                 </div>
-                                <p className="text-sm text-foreground/40 font-medium italic pr-8">{doc.description}</p>
+                                <p className="text-sm text-foreground/60 font-medium pr-8">{doc.description}</p>
                             </div>
 
                             <div className="p-2 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-4 transition-all">
