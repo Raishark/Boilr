@@ -50,6 +50,36 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
         }
     };
 
+    const renderFormattedText = (text: string) => {
+        // Basic regex-based parser for inline elements
+        // Supports: **bold**, [link](url), `code`
+        const parts = text.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\)|`.*?`)/g);
+
+        return parts.map((part, i) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+                return <strong key={i} className="text-primary font-black">{part.slice(2, -2)}</strong>;
+            }
+            if (part.startsWith("[") && part.includes("](")) {
+                const match = part.match(/\[(.*?)\]\((.*?)\)/);
+                if (match) {
+                    return (
+                        <a key={i} href={match[2]} target="_blank" className="text-primary hover:underline underline-offset-4 decoration-primary/30 font-bold">
+                            {match[1]}
+                        </a>
+                    );
+                }
+            }
+            if (part.startsWith("`") && part.endsWith("`")) {
+                return (
+                    <code key={part + i} className="bg-primary/10 text-primary px-2 py-0.5 rounded-md text-sm font-mono border border-primary/20 mx-1">
+                        {part.slice(1, -1)}
+                    </code>
+                );
+            }
+            return <span key={i}>{part}</span>;
+        });
+    };
+
     return (
         <div className="space-y-12 pb-24">
             {sections.map((section, idx) => {
@@ -81,7 +111,6 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
                                 <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-6 md:p-8 hover:border-border transition-colors group-hover:bg-card/80">
                                     <div className="prose prose-invert prose-p:text-foreground/70 prose-headings:text-foreground prose-strong:text-primary max-w-none">
                                         {section.content.split("\n\n").map((para, pIdx) => {
-                                            // Very basic MD rendering for the demo
                                             if (para.startsWith("```")) {
                                                 return (
                                                     <div key={pIdx} className="my-6 bg-black/40 rounded-2xl p-6 border border-white/5 font-mono text-sm overflow-x-auto relative group/code">
@@ -101,7 +130,7 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
                                                         {para.split("\n").map((li, liIdx) => (
                                                             <li key={liIdx} className="flex items-start gap-3 text-foreground/70">
                                                                 <CheckCircle2 className="w-5 h-5 text-primary/60 mt-0.5 shrink-0" />
-                                                                <span>{li.replace(/^[-*]\s+/, "")}</span>
+                                                                <span className="text-lg leading-relaxed">{renderFormattedText(li.replace(/^[-*]\s+/, ""))}</span>
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -110,7 +139,7 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
 
                                             return (
                                                 <p key={pIdx} className="text-lg leading-relaxed text-foreground/60 mb-4 whitespace-pre-wrap">
-                                                    {para}
+                                                    {renderFormattedText(para)}
                                                 </p>
                                             );
                                         })}
