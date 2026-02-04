@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { AlertCircle, RefreshCcw, Home } from "lucide-react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 
 export default function Error({
     error,
@@ -81,8 +80,6 @@ export default function Error({
                     )}
                 </div>
             </section>
-
-            <Footer />
         </main>
     );
 }
