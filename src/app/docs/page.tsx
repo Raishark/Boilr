@@ -1,49 +1,46 @@
-import { Github, Info } from "lucide-react";
+import { DocsContent } from "@/components/docs-content";
+import { Github } from "lucide-react";
 
 async function getReadme() {
-    const res = await fetch("https://raw.githubusercontent.com/Raishark/Boilr/main/README.md", { next: { revalidate: 3600 } });
-    if (!res.ok) return "No se pudo cargar el README desde GitHub.";
-    return res.text();
+    try {
+        const res = await fetch("https://raw.githubusercontent.com/Raishark/Boilr/main/README.md", {
+            next: { revalidate: 3600 }
+        });
+        if (!res.ok) return "# Error\nNo se pudo cargar el README desde GitHub.";
+        return res.text();
+    } catch {
+        return "# Offline Mode\nNo se pudo conectar con el repositorio. Por favor, verifica tu conexión.";
+    }
 }
 
 export default async function DocsPage() {
     const readme = await getReadme();
 
     return (
-        <div className="space-y-8 animate-in fade-in duration-700">
-            <div className="p-4 bg-primary/5 border border-primary/20 rounded-2xl flex items-start gap-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                    <Github className="w-6 h-6 text-primary" />
+        <div className="animate-in fade-in duration-1000">
+            <div className="mb-16 p-8 bg-gradient-to-br from-primary/10 via-background to-background border border-primary/20 rounded-[2.5rem] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:rotate-12 transition-transform duration-700">
+                    <Github className="w-32 h-32" />
                 </div>
-                <div>
-                    <h3 className="font-bold text-lg mb-1">Documentación Sincronizada</h3>
-                    <p className="text-sm text-foreground/60 leading-relaxed">
-                        Esta información se lee directamente desde el repositorio oficial de <span className="font-bold text-foreground">Raishark/Boilr</span> para garantizar que siempre esté al día.
+                <div className="relative z-10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-6">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        Live Doc Sync
+                    </div>
+                    <h1 className="text-5xl font-black tracking-tighter mb-4 bg-gradient-to-r from-foreground to-foreground/40 bg-clip-text text-transparent">
+                        Documentación <br />
+                        <span className="text-primary">Oficial de Boilr</span>
+                    </h1>
+                    <p className="text-xl text-foreground/60 max-w-xl leading-relaxed">
+                        Explora guías, convenciones y el stack tecnológico completo sincronizado en tiempo real.
                     </p>
                 </div>
             </div>
 
-            <div className="prose prose-invert max-w-none">
-                {/* Simple rendering of markdown as preformatted text for now, 
-            avoiding extra heavy libraries unless requested, 
-            but formatted to look like a clean technical document */}
-                <div className="bg-card border border-border rounded-3xl p-8 lg:p-12 shadow-2xl shadow-black/50 overflow-hidden relative">
-                    <div className="absolute top-0 right-0 p-4">
-                        <span className="text-[10px] font-black bg-foreground/5 text-foreground/40 px-2 py-1 rounded-md uppercase tracking-widest">Git: main</span>
-                    </div>
-                    <pre className="whitespace-pre-wrap font-sans text-foreground/80 leading-relaxed text-lg">
-                        {readme}
-                    </pre>
-                </div>
-            </div>
-
-            <div className="flex items-center gap-3 p-6 bg-secondary/5 rounded-2xl border border-secondary/10">
-                <Info className="w-5 h-5 text-secondary" />
-                <p className="text-sm text-foreground/50 italic">
-                    Si prefieres leerlo directamente en GitHub, puedes hacerlo en{" "}
-                    <a href="https://github.com/Raishark/Boilr" className="text-primary hover:underline" target="_blank">este enlace</a>.
-                </p>
-            </div>
+            <DocsContent rawContent={readme} />
         </div>
     );
 }
