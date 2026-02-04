@@ -42,14 +42,14 @@ export default function DocsLayout({
                                     <span>README.md</span>
                                     <Rocket className="w-4 h-4 opacity-40 group-hover:translate-x-1 transition-transform" />
                                 </Link>
-                                <div className="px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-foreground hover:bg-card transition-all cursor-not-allowed flex items-center justify-between">
+                                <a href="https://github.com/Raishark/Boilr/blob/main/CONTRIBUTING.md" target="_blank" className="px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all flex items-center justify-between group/link">
                                     <span>Contributing</span>
-                                    <span className="text-[8px] font-black bg-foreground/5 px-2 py-0.5 rounded text-foreground/20 italic">PRONTO</span>
-                                </div>
-                                <div className="px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-foreground hover:bg-card transition-all cursor-not-allowed flex items-center justify-between">
+                                    <Rocket className="w-4 h-4 opacity-0 group-hover/link:opacity-40 transition-all" />
+                                </a>
+                                <a href="https://github.com/Raishark/Boilr/blob/main/CHANGELOG.md" target="_blank" className="px-4 py-3 rounded-2xl border border-transparent text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all flex items-center justify-between group/link">
                                     <span>Changelog</span>
-                                    <span className="text-[8px] font-black bg-foreground/5 px-2 py-0.5 rounded text-foreground/20 italic">PRONTO</span>
-                                </div>
+                                    <Rocket className="w-4 h-4 opacity-0 group-hover/link:opacity-40 transition-all" />
+                                </a>
                             </nav>
                         </div>
 

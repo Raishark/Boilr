@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-02-04
+
+### Fixed
+- **Navigation Unification**: Unified all `Link` and anchor tags for consistent cross-page navigation.
+- **Redirect Fixes**: Pointed all external resources (Contributing, Changelog, Support) to their correct GitHub locations.
+- **Docs Sidebar**: Enabled sidebar links in the documentation layout.
+- **Cleanup**: Removed dead links and unimplemented pages (Pricing, Login) for a cleaner UI.
+
 ## [1.8.0] - 2026-02-04
 
 ### Added
