@@ -1,7 +1,6 @@
 "use client";
 
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 import { motion } from "framer-motion";
 import { Search, Cog, Rocket, Ship, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -99,8 +98,6 @@ export default function HowItWorksPage() {
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
         </main>
     );
 }
