@@ -2,40 +2,50 @@
 
 ¡Bienvenido a la guía definitiva para sacar el máximo provecho de **Boilr**! Esta herramienta ha sido diseñada para que pases de la idea al código funcional en cuestión de minutos.
 
-## 🛠️ El Flujo de Trabajo
-
-### 1. Configuración Estratégica
-En el generador, no solo eliges herramientas, eliges una arquitectura.
-- **Stack Core**: Recomendamos **Next.js 15** con **Supabase** para proyectos rápidos, o **Prisma** si necesitas un control total de la base de datos.
-- **Autenticación**: **Clerk** ofrece la mejor UX, mientras que **Supabase Auth** es ideal si buscas una integración nativa con tu base de datos.
-
-### 2. Uso de Presets
-Si no quieres configurar paso a paso, usa nuestros **Presets** en la página de inicio o en plantillas. Están diseñados por expertos para casos de uso comunes (SaaS, E-commerce, Landing).
-
-### 3. URLs Compartibles 🔗
-¿Trabajas en equipo? Configura el stack y haz clic en **"Compartir"**. El enlace resultante contiene toda la configuración codificada. Pásalo a tu compañero y él verá exactamente lo mismo que tú. Sin bases de datos ni cuentas.
-
-## 🚀 Despliegue en 3 Minutos
-
-Boilr está optimizado para **Vercel**.
-1. Genera tu proyecto y descarga el ZIP.
-2. Sube el código a un repositorio de GitHub.
-3. Importa el proyecto en Vercel.
+## 🛠️ El Flujo de Trabajo Maestro
 
 > [!TIP]
-> No olvides configurar las Variables de Entorno en el panel de Vercel. Boilr genera un archivo `.env.example` con todo lo que necesitas.
+> Boilr está diseñado para ser iterativo. Puedes cargar configuraciones anteriores pegando la URL compartida.
 
-## 📂 Estructura del Código
+### 1. Configuración Estratégica
+En el generador interactivo, no solo eliges herramientas; estás definiendo el ADN de tu aplicación.
+- **Stack Core**: Recomendamos **Next.js 15** con **Supabase** para proyectos rápidos, o **Prisma** con **PostgreSQL** si necesitas control total de esquemas.
+- **Autenticación**: **Clerk** ofrece la mejor experiencia de usuario (UX) fuera de la caja.
 
-Tu proyecto generado tendrá una estructura limpia y escalable:
-- `src/app`: Rutas y Server Components.
-- `src/components`: UI atomizada con Tailwind.
-- `src/lib`: Clientes de API y utilidades compartidas.
-- `src/services`: Lógica de negocio (ej. lógica de Stripe).
+### 2. Uso de Presets Inteligentes
+Si no quieres configurar paso a paso, utiliza nuestros **Presets** optimizados. Están diseñados por expertos para casos comunes:
+- **SaaS Starter**: Auth + DB + Stripe.
+- **Landing Page**: UI + Resend para captación.
+- **E-commerce**: Estructura de tienda con persistencia.
+
+### 3. URLs Compartibles 🔗
+¿Trabajas en equipo? Configura el stack y presiona **"Compartir"**. El enlace resultante contiene toda la configuración en Base64.
+- Tu compañero verá exactamente lo mismo.
+- Ideal para revisiones técnicas rápidas sin commits pesados.
+
+## 🚀 Despliegue en Tiempo Récord
+
+Boilr es el mejor amigo de **Vercel**.
+
+### Proceso de Lanzamiento
+1. Genera y descarga tu ZIP.
+2. Sube el código a tu repositorio.
+3. Importa en Vercel y configura las variables de entorno.
+
+> [!WARNING]
+> La seguridad es clave. Revisa siempre el archivo `.env.example` para asegurarte de que todas las API Keys requeridas estén configuradas en producción.
+
+## 📂 Estructura del Código Generado
+
+Tu proyecto tendrá una arquitectura limpia y modular:
+- **`src/app`**: El corazón de Next.js. Rutas y lógica de servidor.
+- **`src/components`**: Tus piezas de UI atomizadas y listas para Tailwind.
+- **`src/lib`**: Utilidades puras y clientes de integración (Prisma, Supabase).
+- **`src/services`**: Capa de negocio para integraciones complejas (Stripe API, Emails).
 
 ## 🆘 ¿Necesitas más ayuda?
 
-Si te quedas atascado o encuentras un comportamiento extraño, revisa nuestro archivo de [Soporte](SUPPORT.md).
+Si te encuentras con algún obstáculo, revisa nuestro portal de [Soporte](/docs/soporte).
 
 ---
 *Boilr: Construye el futuro, un componente a la vez.*

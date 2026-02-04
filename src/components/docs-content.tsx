@@ -8,7 +8,8 @@ import {
     Sparkles,
     CheckCircle2,
     Terminal,
-    Info
+    Info,
+    Quote
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +21,7 @@ interface DocSection {
 }
 
 export function DocsContent({ rawContent }: { rawContent: string }) {
-    // Simple parser to split by H2s (##)
+    // Parser for splitting by H2 (##)
     const sections: DocSection[] = rawContent
         .split(/^##\s+/m)
         .filter(Boolean)
@@ -81,7 +82,7 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
     };
 
     return (
-        <div className="space-y-12 pb-24">
+        <div className="space-y-16 pb-24">
             {sections.map((section, idx) => {
                 const Icon = getIcon(section.type);
                 return (
@@ -93,57 +94,87 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
                         transition={{ duration: 0.5, delay: idx * 0.1 }}
                         className="group relative"
                     >
-                        <div className="flex gap-6 items-start">
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            {/* Icon Column (Desktop) */}
                             <div className={cn(
-                                "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500",
-                                "bg-card border border-border group-hover:border-primary/50 group-hover:shadow-[0_0_20px_rgba(var(--primary),0.2)]",
+                                "hidden md:flex w-14 h-14 rounded-2xl items-center justify-center shrink-0 transition-all duration-500 sticky top-40",
+                                "bg-card border border-border group-hover:border-primary/50 group-hover:shadow-[0_0_30px_rgba(var(--primary),0.15)]",
                                 "relative z-10"
                             )}>
-                                <Icon className="w-6 h-6 text-primary" />
+                                <Icon className="w-7 h-7 text-primary" />
                             </div>
 
-                            <div className="flex-1 space-y-4 pt-1">
-                                <div className="flex items-center gap-3">
-                                    <h2 className="text-2xl font-black tracking-tight">{section.title}</h2>
+                            <div className="flex-1 space-y-6 pt-1">
+                                <div className="flex items-center gap-4">
+                                    {/* Icon (Mobile only) */}
+                                    <div className="md:hidden w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center">
+                                        <Icon className="w-5 h-5 text-primary" />
+                                    </div>
+                                    <h2 className="text-3xl font-black tracking-tighter uppercase italic">{section.title}</h2>
                                     <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
                                 </div>
 
-                                <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-6 md:p-8 hover:border-border transition-colors group-hover:bg-card/80">
-                                    <div className="prose prose-invert prose-p:text-foreground/70 prose-headings:text-foreground prose-strong:text-primary max-w-none">
-                                        {section.content.split("\n\n").map((para, pIdx) => {
-                                            if (para.startsWith("```")) {
-                                                return (
-                                                    <div key={pIdx} className="my-6 bg-black/40 rounded-2xl p-6 border border-white/5 font-mono text-sm overflow-x-auto relative group/code">
-                                                        <div className="absolute top-3 right-3 opacity-20 group-hover/code:opacity-100 transition-opacity">
-                                                            <Terminal className="w-4 h-4" />
-                                                        </div>
-                                                        <pre className="text-primary-foreground/90 leading-relaxed whitespace-pre">
-                                                            {para.replace(/```[a-z]*\n|```/g, "")}
-                                                        </pre>
-                                                    </div>
-                                                );
-                                            }
-
-                                            if (para.startsWith("- ") || para.startsWith("* ")) {
-                                                return (
-                                                    <ul key={pIdx} className="space-y-3 my-4">
-                                                        {para.split("\n").map((li, liIdx) => (
-                                                            <li key={liIdx} className="flex items-start gap-3 text-foreground/70">
-                                                                <CheckCircle2 className="w-5 h-5 text-primary/60 mt-0.5 shrink-0" />
-                                                                <span className="text-lg leading-relaxed">{renderFormattedText(li.replace(/^[-*]\s+/, ""))}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                );
-                                            }
-
+                                <div className="space-y-6">
+                                    {section.content.split("\n\n").map((para, pIdx) => {
+                                        // Code Blocks
+                                        if (para.trim().startsWith("```")) {
                                             return (
-                                                <p key={pIdx} className="text-lg leading-relaxed text-foreground/60 mb-4 whitespace-pre-wrap">
-                                                    {renderFormattedText(para)}
-                                                </p>
+                                                <div key={pIdx} className="my-8 bg-zinc-950/80 rounded-[2rem] p-8 border border-white/5 font-mono text-sm overflow-x-auto relative group/code shadow-2xl">
+                                                    <div className="absolute top-4 right-4 opacity-20 group-hover/code:opacity-100 transition-opacity">
+                                                        <Terminal className="w-5 h-5" />
+                                                    </div>
+                                                    <pre className="text-primary/90 leading-relaxed whitespace-pre font-mono">
+                                                        {para.replace(/```[a-z]*\n|```/g, "").trim()}
+                                                    </pre>
+                                                </div>
                                             );
-                                        })}
-                                    </div>
+                                        }
+
+                                        // Headings (H3)
+                                        if (para.trim().startsWith("###")) {
+                                            return (
+                                                <h3 key={pIdx} className="text-xl font-bold text-foreground mt-8 mb-4 uppercase tracking-tight flex items-center gap-2">
+                                                    <span className="w-2 h-2 bg-primary rounded-full" />
+                                                    {para.trim().replace(/^###\s+/, "")}
+                                                </h3>
+                                            );
+                                        }
+
+                                        // Blockquotes
+                                        if (para.trim().startsWith(">")) {
+                                            return (
+                                                <div key={pIdx} className="relative py-6 pl-10 pr-6 rounded-[2rem] bg-primary/5 border-l-4 border-primary italic my-6 group/quote">
+                                                    <Quote className="absolute top-6 left-3 w-5 h-5 text-primary/40" />
+                                                    <p className="text-lg text-foreground/80 leading-relaxed">
+                                                        {renderFormattedText(para.replace(/^>\s?/, ""))}
+                                                    </p>
+                                                </div>
+                                            );
+                                        }
+
+                                        // Lists
+                                        if (para.trim().match(/^[-*]\s+/)) {
+                                            return (
+                                                <ul key={pIdx} className="space-y-4 my-6">
+                                                    {para.trim().split("\n").map((li, liIdx) => (
+                                                        <li key={liIdx} className="flex items-start gap-4 text-foreground/70 group/li">
+                                                            <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-1 transition-colors group-hover/li:bg-primary/20">
+                                                                <CheckCircle2 className="w-4 h-4 text-primary" />
+                                                            </div>
+                                                            <span className="text-lg leading-relaxed">{renderFormattedText(li.replace(/^[-*]\s+/, ""))}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            );
+                                        }
+
+                                        // Paragraphs
+                                        return (
+                                            <p key={pIdx} className="text-xl leading-[1.8] text-foreground/60 mb-6 font-medium italic whitespace-pre-wrap">
+                                                {renderFormattedText(para)}
+                                            </p>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
