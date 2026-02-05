@@ -3,7 +3,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle2, Terminal, Quote, Info, AlertTriangle, Lightbulb, Construction, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Components } from "react-markdown";
@@ -83,7 +83,7 @@ const MarkdownComponents: Components = {
         </li>
     ),
     // Code blocks
-    code: ({ inline, className, children, ...props }: any) => {
+    code: ({ inline, className, children, ...props }: React.HTMLAttributes<HTMLElement> & { inline?: boolean }) => {
         const match = /language-(\w+)/.exec(className || '');
         if (!inline && match) {
             return (
@@ -138,7 +138,7 @@ const MarkdownComponents: Components = {
         </a>
     ),
     // Strong/Bold
-    strong: ({ children }: any) => (
+    strong: ({ children }: React.HTMLAttributes<HTMLElement>) => (
         <strong className="text-primary font-black">{children}</strong>
     ),
 };
@@ -148,7 +148,7 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
     const cleanContent = rawContent.replace(/^#\s+.*$/m, "").trim();
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="pb-24 max-w-none"
@@ -159,6 +159,6 @@ export function DocsContent({ rawContent }: { rawContent: string }) {
             >
                 {cleanContent}
             </ReactMarkdown>
-        </motion.div>
+        </m.div>
     );
 }
