@@ -23,6 +23,11 @@ Si prefieres ahorrar tiempo, utiliza nuestros **Presets** optimizados. Están di
 - Tu equipo visualizará exactamente la misma configuración al instante.
 - Es la forma más rápida de colaborar sin necesidad de intercambiar archivos o commits pesados.
 
+### 4. Vista Previa y Copia Rápida 📋
+Antes de descargar, puedes inspeccionar los fragmentos de código que Boilr generará para ti.
+- **Copy to Clipboard**: Utiliza el botón de copia integrado en los snippets para capturar lógica de configuración instantáneamente.
+- **Sincronización de Stack**: Los fragmentos cambian dinámicamente según tus selecciones en tiempo real.
+
 ## 🚀 Despliegue en Tiempo Récord
 
 Boilr es el aliado perfecto para ecosistemas basados en **Vercel**.
