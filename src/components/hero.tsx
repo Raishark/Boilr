@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export function Hero() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/10 blur-[120px] rounded-full -z-10" />
 
             <div className="container mx-auto px-6 text-center">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -22,9 +22,9 @@ export function Hero() {
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                     </span>
                     V2.8.0 YA DISPONIBLE
-                </motion.div>
+                </m.div>
 
-                <motion.h1
+                <m.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
@@ -32,9 +32,9 @@ export function Hero() {
                 >
                     Tus proyectos listos en <span className="text-primary italic">minutos</span>, <br />
                     no en <span className="text-white/40 line-through">horas</span>.
-                </motion.h1>
+                </m.h1>
 
-                <motion.p
+                <m.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
@@ -42,9 +42,9 @@ export function Hero() {
                 >
                     Boilr genera boilerplates ultra-específicos para freelancers. Next.js, Prisma,
                     Auth, Stripe y Deploy configurados al instante. Enfócate en la lógica, no en el setup.
-                </motion.p>
+                </m.p>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -63,9 +63,9 @@ export function Hero() {
                     >
                         Ver Cómo Funciona
                     </Link>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
@@ -77,7 +77,7 @@ export function Hero() {
                             <span className="text-sm font-medium opacity-80">{text}</span>
                         </div>
                     ))}
-                </motion.div>
+                </m.div>
             </div>
         </section>
     );

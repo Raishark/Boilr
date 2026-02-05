@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
     CheckCircle2,
     Zap,
@@ -389,7 +389,7 @@ function GenerateContent() {
 
                     <AnimatePresence mode="wait">
                         {isSuccess ? (
-                            <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
+                            <m.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
                                 <div className="w-24 h-24 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
                                     <CheckCircle2 className="w-12 h-12 text-secondary" />
                                 </div>
@@ -399,18 +399,18 @@ function GenerateContent() {
                                     <Link href="/" className="px-8 py-3 bg-white/5 border border-white/10 font-bold rounded-2xl hover:bg-white/10 transition-all">Volver al Inicio</Link>
                                     <button onClick={() => { setIsSuccess(false); setCurrentStep(0); }} className="px-8 py-3 bg-primary text-white font-bold rounded-2xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">Crear Otro</button>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         ) : (
-                            <motion.div key={currentStep} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="flex-1">
+                            <m.div key={currentStep} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="flex-1">
                                 <AnimatePresence>
                                     {activeTemplate && (
-                                        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="mb-8 px-6 py-3 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-between">
+                                        <m.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="mb-8 px-6 py-3 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <Rocket className="w-4 h-4 text-primary" />
                                                 <span className="text-sm font-bold">Recomendación para <span className="text-primary capitalize">{activeTemplate?.replace("-", " ")}</span> aplicada</span>
                                             </div>
                                             <button onClick={clearTemplate} className="text-xs font-black text-primary hover:underline">LIMPIAR Y PERSONALIZAR</button>
-                                        </motion.div>
+                                        </m.div>
                                     )}
                                 </AnimatePresence>
 
@@ -606,7 +606,7 @@ function GenerateContent() {
                                         </div>
                                     </div>
                                 )}
-                            </motion.div>
+                            </m.div>
                         )}
                     </AnimatePresence>
 
@@ -616,7 +616,7 @@ function GenerateContent() {
                             <button onClick={nextStep} disabled={isGenerating} className="group px-10 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary/90 transition-all flex items-center gap-2 shadow-xl shadow-primary/20 disabled:opacity-50 disabled:cursor-wait">
                                 {isGenerating ? "GENERANDO..." : (currentStep === STEPS.length - 1 ? "GENERAR CÓDIGO" : "CONTINUAR")}
                                 {isGenerating ? (
-                                    <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}><Zap className="w-4 h-4 fill-white" /></motion.div>
+                                    <m.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}><Zap className="w-4 h-4 fill-white" /></m.div>
                                 ) : (currentStep === STEPS.length - 1 ? <Zap className="w-4 h-4 group-hover:fill-white" /> : <ArrowRight className="w-4 h-4" />)}
                             </button>
                         </div>
