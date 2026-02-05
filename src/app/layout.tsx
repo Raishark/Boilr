@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
             </div>
             <Footer />
             <Analytics />
+            <SpeedInsights />
           </div>
         </MotionProvider>
       </body>

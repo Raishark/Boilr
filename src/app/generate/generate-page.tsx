@@ -25,7 +25,8 @@ import { ProjectConfig } from "@/types/config";
 import { generateBoilerplate } from "@/services/generator";
 import { Logo } from "@/components/logo";
 import { serializeConfig, deserializeConfig } from "@/lib/config-sharing";
-import { Share2, Check, Code, Copy, Terminal as TerminalIcon } from "lucide-react";
+import { Share2, Check, Code, Terminal as TerminalIcon } from "lucide-react";
+import { CopyButton } from "@/components/copy-button";
 import { getLiveSnippets, Snippet } from "@/lib/live-snippets";
 
 const STEPS = [
@@ -98,13 +99,6 @@ function GenerateContent() {
     const snippets = getLiveSnippets(config);
 
     const CodePreview = ({ snippet }: { snippet: Snippet }) => {
-        const [copied, setCopied] = useState(false);
-        const handleCopy = () => {
-            navigator.clipboard.writeText(snippet.code || "");
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        };
-
         if (!snippet) return null;
 
         return (
@@ -114,9 +108,7 @@ function GenerateContent() {
                         <TerminalIcon className="w-3 h-3 text-primary/60" />
                         <span className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">{snippet.title}</span>
                     </div>
-                    <button onClick={handleCopy} className="p-1.5 hover:bg-white/5 rounded-md transition-colors group">
-                        {copied ? <Check className="w-3 h-3 text-secondary" /> : <Copy className="w-3 h-3 text-white/20 group-hover:text-white/40" />}
-                    </button>
+                    <CopyButton text={snippet.code || ""} className="border-none bg-transparent hover:bg-white/5 p-1.5" />
                 </div>
                 <div className="p-4 overflow-x-auto min-h-[200px]">
                     <pre className="text-[11px] leading-relaxed font-mono whitespace-pre text-foreground/80">

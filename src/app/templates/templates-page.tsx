@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { Zap, Database, Shield, CreditCard, Rocket, Code, Globe, Server, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
@@ -127,14 +127,14 @@ export default function TemplatesPage() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-primary/10 blur-[120px] rounded-full -z-10" />
 
                 <div className="container mx-auto max-w-6xl text-center">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         className="mb-12 flex justify-center"
                     >
                         <Logo iconSize="lg" />
-                    </motion.div>
-                    <motion.div
+                    </m.div>
+                    <m.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
@@ -149,7 +149,7 @@ export default function TemplatesPage() {
                         <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto mb-8">
                             Cada plantilla incluye configuración completa, documentación detallada y mejores prácticas de la industria.
                         </p>
-                    </motion.div>
+                    </m.div>
                 </div>
             </section>
 
@@ -160,7 +160,7 @@ export default function TemplatesPage() {
                         {templates.map((template, index) => {
                             const Icon = template.icon;
                             return (
-                                <motion.div
+                                <m.div
                                     key={template.id}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -220,7 +220,7 @@ export default function TemplatesPage() {
                                             Usar Plantilla
                                         </Link>
                                     </div>
-                                </motion.div>
+                                </m.div>
                             );
                         })}
                     </div>
@@ -232,7 +232,7 @@ export default function TemplatesPage() {
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent -z-10" />
 
                 <div className="container mx-auto max-w-4xl text-center">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -251,7 +251,7 @@ export default function TemplatesPage() {
                             <Zap className="w-5 h-5" />
                             Crear Configuración Personalizada
                         </Link>
-                    </motion.div>
+                    </m.div>
                 </div>
             </section>
         </main>
