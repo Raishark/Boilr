@@ -5,6 +5,24 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 > [!NOTE]
 > El formato se basa en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] - 2026-02-05 🚀
+### Añadido
+- **SEO Premium**: Implementación de `robots.ts` y `sitemap.ts` dinámico para indexación total.
+- **Metadata Enriquecida**: Refactor a Server Components para habilitar Open Graph y Twitter Cards en todas las páginas.
+- **Micro-UX**: Nueva utilidad de "Copiar al portapapeles" y hook especializado para snippets.
+- **Speed Insights**: Integración oficial de `@vercel/speed-insights`.
+
+### Cambiado
+- **Refactor de Rendimiento**: Migración de `TemplatesPage` y `GeneratePage` a arquitecturas cliente/servidor optimizadas.
+
+## [3.3.0] - 2026-02-05 ⚡
+### Añadido
+- **Framer Motion Optimization**: Implementación de `MotionProvider` y `LazyMotion` para carga diferida de animaciones.
+- **Componentes Reducidos**: Uso sistemático del componente `m` para minimizar el bundle inicial de JavaScript.
+
+### Eliminado
+- Dependencia de `mermaid` no utilizada para reducir el peso del proyecto.
+
 ## [3.2.0] - 2026-02-04 💎
 ### Añadido
 - **Legibilidad Masterclass**: Eliminación de cursivas excesivas en toda la documentación para mejorar la experiencia de lectura de larga duración.

@@ -1,4 +1,4 @@
-# Boilr 🚀 (v3.2.0)
+# Boilr 🚀 (v3.4.0)
 
 **Boilr** es el generador de boilderplate de código abierto definitivo para desarrolladores que buscan la excelencia. Diseñado por [Raishark](https://github.com/Raishark), permite omitir la configuración tediosa y saltar directamente a la construcción de aplicaciones de alto nivel con una experiencia de desarrollo de clase mundial.
 
@@ -21,6 +21,11 @@
 
 ### Documentación de Elite (v2.6.0)
 - **Portal de Conocimiento**: Acceso a `/docs` con navegación ultrarrápida y una estética minimalista y profesional.
+
+### SEO & Rendimiento Premium (v3.4.0) 🆕
+- **Indexación Inteligente**: Configuración automática de `robots.ts` y `sitemap.ts` dinámico.
+- **Rendimiento Real**: Integración de `@vercel/speed-insights` para monitoreo de métricas Core Web Vitals.
+- **Micro-UX**: Utilidad de copia rápida de snippets para un flujo de trabajo sin fricción.
 
 ## 🛠️ Stack Tecnológico
 

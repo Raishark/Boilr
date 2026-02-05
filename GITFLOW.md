@@ -34,16 +34,16 @@ El momento donde el código se convierte en producto:
 
 ```bash
 # 1. Crear rama de preparación
-git checkout -b release/v3.0.0 develop
+git checkout -b release/v3.4.0 develop
 
 # 2. Finalizar en Main (Producción)
 git checkout main
-git merge --no-ff release/v3.0.0
-git tag -a v3.0.0 -m "Versión 3.0.0 - Edición Masterclass"
+git merge --no-ff release/v3.4.0
+git tag -a v3.4.0 -m "Versión 3.4.0 - SEO, Performance & UX Improvements"
 
 # 3. Sincronizar Desarrollo
 git checkout develop
-git merge --no-ff release/v3.0.0
+git merge --no-ff release/v3.4.0
 ```
 
 ---
