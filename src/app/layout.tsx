@@ -13,12 +13,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
 
 export const metadata: Metadata = {
-  title: "Boilr - Generador de Boilerplates Profesionales",
-  description: "Crea proyectos Next.js configurados con tu stack preferido en segundos.",
+  title: {
+    default: "Boilr - Generador de Boilerplates Profesionales",
+    template: "%s | Boilr"
+  },
+  description: "Crea proyectos Next.js configurados con tu stack preferido en segundos. El generador definitivo para desarrolladores modernos.",
+  keywords: ["Next.js", "Boilerplate", "Generator", "Saas", "Starter Kit", "Prisma", "Clerk", "Stripe"],
+  authors: [{ name: "Raishark" }],
+  creator: "Raishark",
+  metadataBase: new URL("https://boilr.ribla.mx"),
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "https://boilr.ribla.mx",
+    title: "Boilr - Generador de Boilerplates Profesionales",
+    description: "Crea proyectos Next.js configurados con tu stack preferido en segundos.",
+    siteName: "Boilr",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Boilr - Generador de Boilerplates Profesionales",
+    description: "Crea proyectos Next.js configurados con tu stack preferido en segundos.",
+    creator: "@raishark",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
 };
 
 export default function RootLayout({
@@ -38,6 +64,7 @@ export default function RootLayout({
             </div>
             <Footer />
             <Analytics />
+            <SpeedInsights />
           </div>
         </MotionProvider>
       </body>
